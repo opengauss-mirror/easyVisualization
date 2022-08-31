@@ -1,0 +1,377 @@
+{
+  "addsourcedata": {
+      "span": {
+          "span_opengauss":"从数据库中导入",
+          "span_excel":"从外部文件导入",
+          "span_txt":"从txt文件导入"
+      },
+      "button": {
+          "button_toLogin":"添加数据库连接",
+          "button_toUISourceData":"选择数据库连接",
+          "button_toUploadXlsOrXlsxFile":"导入xls或xlsx文件",
+          "button_toUploadCSVFile":"导入csv文件",
+          "button_toUploadTxtFile":"导入txt文件"
+      }
+  },
+  "contextbutton": {
+      "div": {
+          "div_handleOne":"删除本行",
+          "div_handleTwo":"删除本列"
+      }
+  },
+  "datasource": {
+      "button": {
+          "button_deleteSelection": "删除所选行",
+          "button_preserve": "保存修改",
+          "button_deleteSourceData": "删除数据源",
+          "button_fatherMethodHandelSelectDataIsActive": "可视化"
+      },
+      "message": {
+        "deleteMessage":"选择了已删除的数据,请勿重复删除",
+        "bigSizeMessage":"数据量较大，保存修改耗时较长，是否执行？"
+      }
+  },
+  "dialog-form": {
+      "el-form-item": {
+          "choose_data_source": "选择数据源",
+          "choose_legend": "选择图例",
+          "choose_Select_Category_Axis_Labels": "选择分类轴标签" ,
+          "choose_a_column_chart_legend": "选择柱状图图例",
+          "choose_a_line_chart_legend": "选择折线图图例",
+          "choose_category_label": "选择分类标签",
+          "choose_dimension": "选择维度",
+          "choose_x-axis_data": "选择x轴数据",
+          "choose_y-axis_data": "选择y轴数据",
+          "choose_z-axis_data": "选择z轴数据"
+      },
+      "button": {
+          "button_handleCancle": "取消",
+          "button_handleConfirm": "确定"
+      }
+  },
+  "discription": {
+      "discriptions": {
+          "name": "数据源名称",
+          "item": "图例项",
+          "label1": "分类轴标签",
+          "order": "数据源序号",
+          "option": "操作",
+          "x_axis": "x轴",
+          "y_axis": "y轴",
+          "z_axis": "z轴",
+          "Column_chart_legend": "柱状图图例",
+          "Bar_chart_legend": "条形图图例",
+          "dim": "维度",
+          "label_classify": "分类标签"
+      },
+      "button": {
+          "delete": "删除"
+      }
+  },
+  "normal": {
+    "item": {
+        "item_legend_name":"修改图例名",
+        "item_legend_color":"修改图例颜色",
+        "axis_left":"网格左侧距离",
+        "axis_right":"网格右侧距离",
+        "axis_top":"网格上侧距离",
+        "axis_bottom":"网格下侧距离",
+        "xAxis_font_size":"横轴字体大小",
+        "xAxis_label_distance":"标签间隔",
+        "xAxis_label_angel":"标签旋转角度",
+        "yAxis_font_size":"纵轴字体大小",
+        "data_zoom":"下方缩放控件",
+        "echarts_text_label":"图形文本标签"
+    },
+    "alert": {
+        "axis_position":"绘图网格设置",
+        "xAxis_config":"横轴设置",
+        "yAxis_config":"纵轴设置",
+        "other_config":"其他设置"
+    }
+  },
+  "Radar": {
+      "el-form-item": {
+          "data_range": "选择数据范围",
+          "data_start_index": "数据起始索引",
+          "data_end_index": "数据终止索引",
+          "whether_show_title": "是否显示标题",
+          "title_position": "标题显示位置",
+          "chart_title": "图表标题",
+          "chart_subtitle": "图表副标题",
+          "title_size": "标题大小",
+          "subtitle_size": "副标题大小",
+          "change_title_color": "修改标题颜色",
+          "legend_display_position": "图例显示位置",
+          "legend_layout": "图例布局方式",
+          "legend_size": "图例大小",
+          "Radar_left_distance": "雷达左侧距离",
+          "Radar_upper_side_distance": "雷达上侧距离",
+          "Radar_radius": "雷达半径",
+          "Category_abel_size": "分类标签大小"
+      },
+      "el-option": {
+          "show": "显示",
+          "hide": "隐藏",
+          "top_left": "左上方",
+          "top": "正上方",
+          "top_right": "右上方",
+          "right": "右侧",
+          "bottom_right": "右下方",
+          "bottom": "正下方",
+          "bottom_left": "左下方",
+          "left": "左侧",
+          "horizontal_arrangement": "水平排列",
+          "vertical_arrangement": "垂直排列"
+      },
+      "el-alert": {
+          "title_set": "标题设置",
+          "legend_setting": "图例设置",
+          "Radar_chart_settings": "雷达图设置"
+      }
+  },
+  "Surface": {
+      "button": {
+          "button_refreshEcharts": "刷新"
+      }
+  },
+  "YBar": {
+      "el-form-item": {
+          "data_start_index": "数据起始索引",
+          "data_end_index": "数据终止索引",
+          "whether_show_title": "是否显示标题",
+          "title_position": "标题显示位置",
+          "chart_title": "图表标题",
+          "chart_subtitle": "图表副标题",
+          "title_size": "标题大小",
+          "subtitle_size": "副标题大小",
+          "change_title_color": "修改标题颜色",
+          "change_legend_name": "修改图例名",
+          "change_legend_color": "修改图例颜色",
+          "legend_display_position": "图例显示位置",
+          "legend_layout": "图例布局方式",
+          "legend_size": "图例大小",
+          "grid_left_distance": "网格左侧距离",
+          "grid_right_distance": "网格右侧距离",
+          "grid_top_distance": "网格上侧距离",
+          "grid_bottom_distance": "网格下侧距离",
+          "Horizontal_font_size": "横轴字体大小",
+          "Tab_spacing": "标签间隔",
+          "Label_rotation_angle": "标签旋转角度",
+          "Vertical_font_size": "纵轴字体大小",
+          "Bottom_zoom_controls": "下方缩放控件",
+          "Graphic_text_label": "图形文本标签"
+      },
+      "el-option": {
+          "show": "显示",
+          "hide": "隐藏",
+          "top_left": "左上方",
+          "top": "正上方",
+          "top_right": "右上方",
+          "right": "右侧",
+          "bottom_right": "右下方",
+          "bottom": "正下方",
+          "bottom_left": "左下方",
+          "left": "左侧",
+          "horizontal_arrangement": "水平排列",
+          "vertical_arrangement": "垂直排列",
+          "display": "显示",
+          "not_display": "不显示"
+      },
+      "el-alert": {
+          "title_set": "标题设置",
+          "legend_setting": "图例设置",
+          "Drawing_grid_settings": "绘图网格设置",
+          "Horizontal_axis_settings": "横轴设置",
+          "Vertical_axis_settings": "纵轴设置",
+          "other_settings": "其他设置"
+      }
+  },
+  "Pie": {
+      "el-form-item": {
+          "data_start_index": "数据起始索引",
+          "data_end_index": "数据终止索引",
+          "whether_show_title": "是否显示标题",
+          "title_position": "标题显示位置",
+          "chart_title": "图表标题",
+          "chart_subtitle": "图表副标题",
+          "title_size": "标题大小",
+          "subtitle_size": "副标题大小",
+          "change_title_color": "修改标题颜色",
+          "legend_display_position": "图例显示位置",
+          "legend_layout": "图例布局方式",
+          "legend_size": "图例大小",
+          "Pie_chart_inner_diameter": "饼图内径",
+          "Pie_chart_outer_diameter": "饼图外径",
+          "Left_distance_of_pie_chart": "饼图左侧距离",
+          "Top_distance_of_pie_chart": "饼图上侧距离",
+          "text_label_size": "文本标签大小",
+          "Pie_chart_roundness": "饼图圆角程度",
+          "Nightingale_diagram": "南丁格尔图"
+      },
+      "el-option": {
+          "show": "显示",
+          "hide": "隐藏",
+          "open": "开启",
+          "close": "关闭",
+          "horizontal_arrangement": "水平排列",
+          "vertical_arrangement": "垂直排列"
+      },
+      "el-alert": {
+          "title_set": "标题设置",
+          "legend_setting": "图例设置",
+          "Pie_chart_settings": "饼图设置"
+      }
+  },
+  "login": {
+      "form": {
+          "formName": "建立数据库连接",
+          "pollName": "连接名",
+          "host": "主机",
+          "port": "端口号",
+          "portPlaceholder": "默认5432",
+          "database": "数据库",
+          "username": "用户名",
+          "password": "密码"
+      },
+      "button": {
+        "confirmButton": "登陆"
+      },
+      "message": {
+        "notNull":"不能为空"
+      }
+  },
+  "processeddatas": {
+      "button": {
+          "refreshDataSourceListButton": "刷新",
+          "addSourceDataButton": "添加"
+      },
+      "el-alert": {
+          "alert_datasource": "已有数据源"
+      }
+  },
+  "selectdata": {
+      "el-form-item": {
+          "echarts-type": "可视化图表类型"
+
+      },
+      "button": {
+          "button-add-echarts-form": "添加echarts数据项",
+          "button-to-echarts": "绘制可视化图表"
+      }
+  },
+  "sourcedata": {
+      "button": {
+          "button_submit": "提交"
+      },
+      "message": {
+        "data_source_name": "请输入数据源名称(请避免与已有数据源名称重复且不包含'.')",
+        "wrong_data_source_name": "数据源名称为空或不合法！"
+      }
+  },
+  "uisourcedata": {
+      "el-alert": {
+          "Select_database_connection": "选择数据库连接",
+          "schema": "schema",
+          "table": "表",
+          "Data_filtering_filter": "数据筛选：过滤",
+          "Descrpition_filter":"过滤时，清空分组设置",
+          "Data_filtering_sort": "数据筛选：排序",
+          "Descrpition_sort": "排序时，清空分组设置",
+          "alert-group": "数据分组",
+          "Descrpition_group": "分组时，清空数据筛选设置！"
+
+      },
+      "el-form-item": {
+          "item-poll-name": "选择连接",
+          "item-schema": "选择schema",
+          "item-table-headers": "选择所需列",
+          "item-where-table-header": "按列过滤",
+          "item-where-operate": "过滤方式",
+          "item-where-bigger-smaller-equals": "过滤条件值",
+          "item-where-scope-0": "大于等于",
+          "item-where-scope-1": "小于等于",
+          "item-sort-headers": "选择排序列",
+          "item-sort-desc-or-asc": "排序方式",
+          "item-group-header": "按某列分组",
+          "item-aggregate-header": "选择汇总列",
+          "item-aggregate-func": "汇总方式",
+          "item-aggregate-name": "汇总列命名"
+
+      },
+      "el-option": {
+          "bigger": "大于",
+          "less": "小于",
+          "equal": "等于",
+          "Custom_closed_range": "自定义闭区间",
+          "asc": "升序",
+          "desc": "降序",
+          "bygroup": "数据分组"
+      },
+      "aggregate_func": {
+        "avg":"求平均值",
+        "count":"求总行数",
+        "max":"求最大值",
+        "min":"求最小值",
+        "sum":"求和"
+      },
+      "button": {
+          "button_handle_reset_sift": "重置筛选",
+          "button_handle_sift": "立即筛选"
+      }
+  },
+  "uploadcsvfile": {
+      "button": {
+          "button_select_file": "选取文件",
+          "button_submitUpload": "上传到服务器"
+      },
+      "div": {
+          "make_sure": "请务必确认上传的CSV文件中的第一行是表头!"
+      },
+      "message": {
+        "file_num":"当前限制选择1个文件！"
+      }
+  },
+  "uploadtxtfile": {
+      "button": {
+          "button_select_file": "选取文件",
+          "button_submitUpload": "上传到服务器"
+      },
+      "div": {
+          "make_sure": "请务必确认上传的TXT文件中的第一行是表头!"
+      }
+  },
+  "uploadxlsorxlsxfile": {
+      "button": {
+          "button_select_file": "选取文件",
+          "button_submitUpload": "上传到服务器"
+      },
+      "div": {
+          "make_sure": "请务必确认上传的xls、xlsx文件中的第一行是表头!"
+      }
+  },
+  "echartsType":{
+    "bar":"柱状图",
+    "ybar":"条形图",
+    "line":"折线图",
+    "area":"面积图",
+    "scatter":"散点图",
+    "combination":"组合图",
+    "pie":"饼状图",
+    "radar":"雷达图",
+    "surface":"3D曲面图"
+  },
+  "loading": {
+    "text": "正在加载"
+  },
+  "show":"显示",
+  "hidden":"不显示",
+  "remove":"删除",
+  "submit":"提交",
+  "error": "错误",
+  "tips": "提示",
+  "confirm" : "确定",
+  "cancel": "取消",
+  "success":"成功",
+  "fail":"失败"
+}

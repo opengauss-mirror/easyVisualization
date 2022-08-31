@@ -1,0 +1,19 @@
+mybatis-plus:
+  mapper-locations: classpath:mapper/*
+  configuration:
+    call-setters-on-nulls: true
+    map-underscore-to-camel-case: off
+
+server:
+  port: 8083
+
+spring:
+  datasource:
+    dynamic:
+      primary: master
+      strict: false
+  resources:
+    static-locations: classpath:/static
+
+
+

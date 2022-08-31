@@ -1,0 +1,377 @@
+{
+    "addsourcedata": {
+        "span": {
+            "span_opengauss":"From opengauss",
+            "span_excel":"From excel/csv file ",
+            "span_txt":"From txt file"
+        },
+        "button": {
+            "button_toLogin":"Add database connection",
+            "button_toUISourceData":"Select database connection",
+            "button_toUploadXlsOrXlsxFile":"Import xls or xlsx file",
+            "button_toUploadCSVFile":"Import csv file",
+            "button_toUploadTxtFile":"Import txt file"
+        }
+    },
+    "contextbutton": {
+        "div": {
+            "div_handleOne":"Delete this line",
+            "div_handleTwo":"Delete this column"
+        }
+    },
+    "datasource": {
+        "button": {
+            "button_deleteSelection": "Delete the selected line",
+            "button_preserve": "Save changes",
+            "button_deleteSourceData": "Remove data sources",
+            "button_fatherMethodHandelSelectDataIsActive": "Visualization"
+        },
+        "message": {
+          "deleteMessage":"Deleted data is selected, please do not delete it repeatedly",
+          "bigSizeMessage":"The amount of data is large and it takes a long time to save and modify. Do you want to execute it?"
+        }
+    },
+    "dialog-form": {
+        "el-form-item": {
+            "choose_data_source": "Select data source",
+            "choose_legend": "Select legend",
+            "choose_Select_Category_Axis_Labels": "Select category axis label" ,
+            "choose_a_column_chart_legend": "Select the histogram legend",
+            "choose_a_line_chart_legend": "Select line chart legend",
+            "choose_category_label": "Select category label",
+            "choose_dimension": "Select dimension",
+            "choose_x-axis_data": "Select X-axis data",
+            "choose_y-axis_data": "Select Y-axis data",
+            "choose_z-axis_data": "Select z-axis data"
+        },
+        "button": {
+            "button_handleCancle": "cancel",
+            "button_handleConfirm": "determine"
+        }
+    },
+    "discription": {
+        "discriptions": {
+            "name": "Data source name",
+            "item": "Legend item",
+            "label1": "Category axis label",
+            "order": "Data source sequence number",
+            "option": "operation",
+            "x_axis": "x alex",
+            "y_axis": "y alex",
+            "z_axis": "z alex",
+            "Column_chart_legend": "Bar chart legend",
+            "Bar_chart_legend": "Bar chart legend",
+            "dim": "dimension",
+            "label_classify": "Classification label"
+        },
+        "button": {
+            "delete": "delete"
+        }
+    },
+    "normal": {
+      "item": {
+          "item_legend_name":"Modify legend name",
+          "item_legend_color":"Modify legend color",
+          "axis_left":"Grid left distance",
+          "axis_right":"Grid right distance",
+          "axis_top":"Distance above grid",
+          "axis_bottom":"Distance below the grid",
+          "xAxis_font_size":"Horizontal axis font size",
+          "xAxis_label_distance":"Label interval",
+          "xAxis_label_angel":"Label rotation angle",
+          "yAxis_font_size":"Vertical axis font size",
+          "data_zoom":"Zoom control below",
+          "echarts_text_label":"Graphic text label"
+      },
+      "alert": {
+          "axis_position":"Drawing grid settings",
+          "xAxis_config":"Horizontal axis setting",
+          "yAxis_config":"Vertical axis setting",
+          "other_config":"Other settings"
+      }
+    },
+    "Radar": {
+        "el-form-item": {
+            "data_range": "Select data range",
+            "data_start_index": "Data start index",
+            "data_end_index": "Data start index",
+            "whether_show_title": "Show title",
+            "title_position": "Title display position",
+            "chart_title": "Chart title",
+            "chart_subtitle": "Chart subtitle",
+            "title_size": "Title Size:",
+            "subtitle_size": "Subtitle size",
+            "change_title_color": "Modify title color",
+            "legend_display_position": "Legend display location",
+            "legend_layout": "Legend layout",
+            "legend_size": "Legend size:",
+            "Radar_left_distance": "Radar left side distance",
+            "Radar_upper_side_distance": "Radar upper distance",
+            "Radar_radius": "Radar radius",
+            "Category_abel_size": "Category label size"
+        },
+        "el-option": {
+            "show": "display",
+            "hide": "hide",
+            "top_left": "upper left",
+            "top": "Directly above",
+            "top_right": "upper right",
+            "right": "right",
+            "bottom_right": "lower right",
+            "bottom": "Directly below",
+            "bottom_left": "lower left",
+            "left": "left",
+            "horizontal_arrangement": "Horizontal arrangement",
+            "vertical_arrangement": "Vertical arrangement"
+        },
+        "el-alert": {
+            "title_set": "Title Setting",
+            "legend_setting": "Legend settings",
+            "Radar_chart_settings": "Radar chart setting"
+        }
+    },
+    "Surface": {
+        "button": {
+            "button_refreshEcharts": "刷新"
+        }
+    },
+    "YBar": {
+        "el-form-item": {
+            "data_start_index": "Data start index",
+            "data_end_index": "Data termination request",
+            "whether_show_title": "Show title",
+            "title_position": "Title display position",
+            "chart_title": "Chart title",
+            "chart_subtitle": "Chart subtitle",
+            "title_size": "Title Size:",
+            "subtitle_size": "Subtitle size",
+            "change_title_color": "Modify title color",
+            "change_legend_name": "Modify legend name",
+            "change_legend_color": "Modify legend color",
+            "legend_display_position": "Legend display location",
+            "legend_layout": "Legend layout",
+            "legend_size": "Legend size:",
+            "grid_left_distance": "Grid left distance",
+            "grid_right_distance": "Grid right distance",
+            "grid_top_distance": "Distance above grid",
+            "grid_bottom_distance": "Distance below the grid",
+            "Horizontal_font_size": "Horizontal axis font size",
+            "Tab_spacing": "Label interval",
+            "Label_rotation_angle": "Label rotation angle",
+            "Vertical_font_size": "Vertical axis font size",
+            "Bottom_zoom_controls": "Zoom control below",
+            "Graphic_text_label": "Graphic text label"
+        },
+        "el-option": {
+            "show": "display",
+            "hide": "hide",
+            "top_left": "upper left",
+            "top": "Directly above",
+            "top_right": "upper right",
+            "right": "right",
+            "bottom_right": "lower right",
+            "bottom": "Directly below",
+            "bottom_left": "lower left",
+            "left": "left",
+            "horizontal_arrangement": "Horizontal arrangement",
+            "vertical_arrangement": "Vertical arrangement",
+            "display": "display",
+            "not_display": "Don't show"
+        },
+        "el-alert": {
+            "title_set": "Title Setting",
+            "legend_setting": "Legend settings",
+            "Drawing_grid_settings": "Drawing grid settings",
+            "Horizontal_axis_settings": "Horizontal axis setting",
+            "Vertical_axis_settings": "Vertical axis setting",
+            "other_settings": "Other settings"
+        }
+    },
+    "Pie": {
+        "el-form-item": {
+            "data_start_index": "Data start index",
+            "data_end_index": "Data termination index",
+            "whether_show_title": "Show title",
+            "title_position": "Title display position",
+            "chart_title": "Chart title",
+            "chart_subtitle": "Chart subtitle",
+            "title_size": "Title Size:",
+            "subtitle_size": "Subtitle size",
+            "change_title_color": "Modify title color",
+            "legend_display_position": "Legend display location",
+            "legend_layout": "Legend layout",
+            "legend_size": "Legend size:",
+            "Pie_chart_inner_diameter": "Pie chart inner diameter",
+            "Pie_chart_outer_diameter": "Pie chart outer diameter",
+            "Left_distance_of_pie_chart": "Pie chart left distance",
+            "Top_distance_of_pie_chart": "Pie chart upper distance",
+            "text_label_size": "Text label size",
+            "Pie_chart_roundness": "Pie chart fillet degree",
+            "Nightingale_diagram": "Nightingale map"
+        },
+        "el-option": {
+            "show": "display",
+            "hide": "hide",
+            "open": "open",
+            "close": "close",
+            "horizontal_arrangement": "Horizontal arrangement",
+            "vertical_arrangement": "Vertical arrangement"
+        },
+        "el-alert": {
+            "title_set": "Title Setting",
+            "legend_setting": "Legend settings",
+            "Pie_chart_settings": "Pie chart settings"
+        }
+    },
+    "login": {
+        "form": {
+            "formName": "Establish database connection",
+            "pollName": "Connection name:",
+            "host": "host",
+            "port": "Port number",
+            "portPlaceholder": "Default 5432",
+            "database": "database",
+            "username": "user name",
+            "password": "password"
+        },
+        "button": {
+          "confirmButton": "登陆"
+        },
+        "message": {
+          "notNull":"不能为空"
+        }
+    },
+    "processeddatas": {
+        "button": {
+            "refreshDataSourceListButton": "Refresh",
+            "addSourceDataButton": "add"
+        },
+        "el-alert": {
+            "alert_datasource": "Existing data source"
+        }
+    },
+    "selectdata": {
+        "el-form-item": {
+            "echarts-type": "Visual chart type"
+  
+        },
+        "button": {
+            "button-add-echarts-form": "Add echarts data item",
+            "button-to-echarts": "Draw visual charts"
+        }
+    },
+    "sourcedata": {
+        "button": {
+            "button_submit": "Submit"
+        },
+        "message": {
+          "data_source_name": "Please enter a data source name (please avoid duplication with existing data source names and exclude'.')",
+          "wrong_data_source_name": "Data source name is empty or illegal!"
+        }
+    },
+    "uisourcedata": {
+        "el-alert": {
+            "Select_database_connection": "Select database connection",
+            "schema": "schema",
+            "table": "form",
+            "Data_filtering_filter": "Data filtering: filtering",
+            "Descrpition_filter":"Clear grouping settings during filtering",
+            "Data_filtering_sort": "Data filtering: sorting",
+            "Descrpition_sort": "Clear grouping settings when sorting",
+            "alert-group": "Data grouping",
+            "Descrpition_group": "Clear the data filtering settings when grouping!"
+  
+        },
+        "el-form-item": {
+            "item-poll-name": "Select connection",
+            "item-schema": "Select schema",
+            "item-table-headers": "Select the desired column",
+            "item-where-table-header": "Filter by column",
+            "item-where-operate": "Filtering method:",
+            "item-where-bigger-smaller-equals": "Filter condition value",
+            "item-where-scope-0": "Greater than or equal to",
+            "item-where-scope-1": "Less than or equal to",
+            "item-sort-headers": "Select row sequence",
+            "item-sort-desc-or-asc": "sort order",
+            "item-group-header": "Group by a column",
+            "item-aggregate-header": "Select summary column",
+            "item-aggregate-func": "Summary method:",
+            "item-aggregate-name": "Summary column naming"
+  
+        },
+        "el-option": {
+            "bigger": "greater than",
+            "less": "less than",
+            "equal": "be equal to",
+            "Custom_closed_range": "Custom closed interval",
+            "asc": "Ascending order",
+            "desc": "Descending order",
+            "bygroup": "Data grouping"
+        },
+        "aggregate_func": {
+          "avg":"Average",
+          "count":"Total number",
+          "max":"Maximize",
+          "min":"Minimum",
+          "sum":"Sum"
+        },
+        "button": {
+            "button_handle_reset_sift": "Reset filter",
+            "button_handle_sift": "Filter now"
+        }
+    },
+    "uploadcsvfile": {
+        "button": {
+            "button_select_file": "Select file",
+            "button_submitUpload": "Upload to server"
+        },
+        "div": {
+            "make_sure": "Please make sure that the first line in the uploaded CSV file is the header!"
+        },
+        "message": {
+          "file_num":"The current limit is 1 file!"
+        }
+    },
+    "uploadtxtfile": {
+        "button": {
+            "button_select_file": "Select file",
+            "button_submitUpload": "Upload to server"
+        },
+        "div": {
+            "make_sure": "Please make sure that the first line in the uploaded TXT file is the header!"
+        }
+    },
+    "uploadxlsorxlsxfile": {
+        "button": {
+            "button_select_file": "Select file",
+            "button_submitUpload": "Upload to server"
+        },
+        "div": {
+            "make_sure": "Please make sure that the first line in the uploaded xls and xlsx files is the header!"
+        }
+    },
+    "echartsType":{
+      "bar":"Histogram",
+      "ybar":"Bar chart",
+      "line":"Line chart",
+      "area":"Area map",
+      "scatter":"Scatter plot",
+      "combination":"Combination diagram",
+      "pie":"Pie chart",
+      "radar":"Radar chart",
+      "surface":"3D surface diagram"
+    },
+    "loading": {
+      "text": "Loading"
+    },
+    "show":"display",
+    "hidden":"Don't show",
+    "remove":"delete",
+    "submit":"Submit",
+    "error": "error",
+    "tips": "Tips",
+    "confirm" : "determine",
+    "cancel": "cancel",
+    "success":"success",
+    "fail":"fail"
+  }

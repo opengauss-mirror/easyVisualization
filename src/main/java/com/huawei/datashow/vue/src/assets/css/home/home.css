@@ -1,0 +1,20 @@
+.el-container {
+    height: 100%;
+  }
+.el-header {
+    background-color: #FFFFFF;
+    color: #333;
+    line-height: 60px;
+    width: 100%;
+    padding: 0%;
+}
+.el-main{
+    height: 100%;
+    width: 100%;
+    padding: 0%;
+}
+
+#img_logo{
+    height:35px;
+    margin-bottom:5px;
+}
