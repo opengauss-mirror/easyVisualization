@@ -1,0 +1,12 @@
+.el-footer .el-input.el-input-group.el-input-group--append{
+    width: 250px;
+}
+
+#main{
+    padding: 5px;
+}
+
+#footer{
+    text-align: right; 
+    font-size: 12px; 
+}

@@ -1,0 +1,27 @@
+#form{
+    border: 2px solid #eaeaea;
+    border-radius: 15px;
+    width: 90%;
+    margin:auto;
+    margin-top:20px
+}
+
+#echarts-type{
+    margin-top:20px;
+    margin-left:20px
+}
+
+#select-echarts-type{
+    width:250px
+}
+
+#button-add-echarts-form{
+    margin-bottom:20px; 
+    margin-top: 20px;
+}
+
+#button-to-echarts{
+    margin-bottom:20px; 
+    margin-top: 20px;
+    margin-left: 20px;
+}

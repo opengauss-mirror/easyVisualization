@@ -1,0 +1,10 @@
+#login_container{
+    border-radius: 15px;
+    background-clip: padding-box;
+    margin: 180px auto;
+    width: 350px;
+    height: 400px;
+    padding: 35px 35px 15px 35px;
+    background-color: #fff;
+    border: 2px solid #eaeaea;    
+}

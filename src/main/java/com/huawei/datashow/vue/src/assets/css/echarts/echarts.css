@@ -1,0 +1,27 @@
+#echarts_container .el-aside {
+    background-color:#EBEEF5
+}
+#echarts_container .scrollbar {
+    height: 100%
+}
+#echarts_container .el-form-item {
+    margin-top:20px;
+    margin-left:20px
+}
+#echarts_container .el-select {
+    width:150px;
+}
+#echarts_container .el-alert {
+    background-color:#F2F6FC;
+    border-radius: 0%
+}
+#echarts_container #alert-data-source-size {
+    background-color: #D6EECA;
+    border-radius: 0%
+}
+#echarts_container .el-color-picker {
+    margin-top:3px
+}
+#echarts_container .el-main {
+    padding:0
+}

@@ -1,0 +1,52 @@
+#addsourcedata{
+    background-color:white;
+    width: 100%;
+}
+
+#addsourcedata_ways{
+    height: 100%;
+}
+
+#img_opengauss{
+    width: 300px;
+    height: 300px;
+}
+
+#span_opengauss{
+    font-weight: bold;
+}
+
+#img_excel{
+    width: 300px;
+    height: 300px;
+}
+
+#span_excel{
+    font-weight: bold;
+}
+
+#img_txt{
+    width: 300px;
+    height: 300px;
+}
+
+#span_txt{
+    font-weight: bold;
+}
+
+.el-col{
+    height: 100%;
+}
+
+.el-card{
+    height: 100%;
+    vertical-align: middle;
+}
+
+.image{
+    margin-top:50%
+}
+
+.description{
+    padding: 14px
+}

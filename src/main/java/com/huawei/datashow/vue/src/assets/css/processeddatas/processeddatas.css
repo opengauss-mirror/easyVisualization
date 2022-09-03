@@ -1,0 +1,31 @@
+#aside_datasources{
+    width: 10%;
+    background-color: #DCDFE6;
+}
+
+#alert_datasource{
+    background-color: #E4E7ED;
+}
+
+#main{
+    background-color:#EBEEF5;
+    padding: 0%;
+}
+
+#addSourceDataButton{
+    width: 100%;
+    border-radius: 0;
+    height:30px;
+    font-size: small;
+}
+
+#refreshDataSourceListButton{
+    width: 100%;
+    border-radius: 0;
+    height:30px;
+    font-size: small;
+}
+
+#selectdata {
+    background-color:#DCDFE6
+}
