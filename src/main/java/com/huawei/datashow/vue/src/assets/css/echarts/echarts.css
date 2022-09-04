@@ -1,9 +1,9 @@
 #echarts_container .el-aside {
     background-color:#EBEEF5
 }
-#echarts_container .scrollbar {
+/* #echarts_container .scrollbar {
     height: 100%
-}
+} */
 #echarts_container .el-form-item {
     margin-top:20px;
     margin-left:20px

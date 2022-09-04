@@ -26,12 +26,16 @@ public class OpenGaussDataBaseServiceImpl implements OpenGaussDataBaseService
 
 
     @Override
-    public String getSourceData(String pollName, String sql)
-    {
+    public String getSourceData(String pollName, String sql) {
         DynamicDataSourceContextHolder.push(pollName);
-        List<Map> data = openGaussDataBaseMapper.customSql(sql);
-        JSON.DEFFAULT_DATE_FORMAT = "yyyy-MM-dd HH:mm:ss";
-        String json = JSON.toJSONString(data, filter, SerializerFeature.WriteDateUseDateFormat);
-        return json;
+        try {
+            List<Map> data = openGaussDataBaseMapper.customSql(sql);
+            JSON.DEFFAULT_DATE_FORMAT = "yyyy-MM-dd HH:mm:ss";
+            String json = JSON.toJSONString(data, filter, SerializerFeature.WriteDateUseDateFormat);
+            return json;
+        }
+        catch (Exception e) {
+            throw e;
+        }
     }
 }

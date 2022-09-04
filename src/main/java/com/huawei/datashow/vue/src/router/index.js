@@ -12,8 +12,7 @@ import Radar from '../components/echarts/Radar.vue'
 import Scatter from '../components/echarts/Scatter.vue'
 import Surface from '../components/echarts/Surface.vue'
 import UploadXlsOrXlsxFile from '../components/uploadxlsorxlsxfile/index.vue'
-import UploadCSVFile from '../components/uploadcsvfile/index.vue'
-import UploadTXTFile from '../components/uploadtxtfile/index.vue'
+import UploadCSVOrTxtFile from '../components/uploadcsvortxtfile/index.vue'
 import AddSourceData from '../components/addsourcedata/index.vue'
 import ProcessedDatas from '../components/processeddatas/index.vue'
 import SelectData from '../components/selectdata/index.vue'
@@ -56,12 +55,8 @@ export default new VueRouter({
 							component:UploadXlsOrXlsxFile							
 						},
 						{
-							path:'uploadcsvfile',
-							component:UploadCSVFile							
-						},
-						{
-							path:'uploadtxtfile',
-							component:UploadTXTFile
+							path:'uploadcsvortxtfile',
+							component:UploadCSVOrTxtFile							
 						},
 						{
 							path:'uisourcedata',

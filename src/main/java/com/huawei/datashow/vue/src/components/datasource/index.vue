@@ -13,8 +13,13 @@
             :element-loading-text="$t('loading.text')"
             element-loading-spinner="el-icon-loading"
             element-loading-background="rgba(0, 0, 0, 0.8)">
-                <el-table-column fixed="left" type="selection" width="50"></el-table-column>
+                <el-table-column fixed="left" type="selection" width="80"></el-table-column>
                 <el-table-column v-for="header in this.headers" :label="header" :property="header" :column-key="header"></el-table-column>
+                <el-table-column fixed="right" :label="$t('operation')" width="120">
+                    <template slot-scope="scope">
+                        <el-button @click="deleteRow(scope.$index, scope.row)" type="text" size="small">{{$t('remove')}}</el-button>
+                    </template>
+                </el-table-column>            
             </el-table>
 
             <el-pagination
@@ -40,6 +45,12 @@
             icon="el-icon-scissors">
             {{$t('datasource.button.button_deleteSelection')}}
           </el-button>
+          <el-button 
+            type="info" 
+            @click="reload()" 
+            icon="el-icon-refresh-right">
+            {{$t('datasource.button.button_reload')}}
+          </el-button>          
           <el-button 
             type="success" 
             @click="preserve()" 
@@ -69,6 +80,7 @@
 <script>
 import ContextButton from '@/components/contextbutton'
 import axios from 'axios'
+import router from '@/router'
 
   export default {
     props:[ 'dataSourceName' ],
@@ -146,12 +158,31 @@ import axios from 'axios'
             this.fetchDataSource()  
         },
 
+        async reload() {
+            this.dataSourceEdit.deleteColumnName = []
+            this.dataSourceEdit.deleteRowIndex = []
+            await axios({
+            url:'/handle-data-source/reload-data-source',
+            method:"get",
+            params:{
+                'dataSourceName':this.dataSourceName
+            }
+            }).then(
+            response => {
+                this.showMessage(this.$t('success'), response.data.message, "success")
+            },
+            error => {
+                this.showMessage(this.$t('fail'), response.data.message, "error")
+            })      
+            this.fetchDataSource()            
+        },
+
         async preserve(){
             if (this.count < 10000) {
                 this.saveEdit();
                 return;
             }
-            this.$confirm(this.$t('bigSizeMessage'), this.$t('tips'), {
+            this.$confirm(this.$t('datasource.message.bigSizeMessage'), this.$t('tips'), {
                 confirmButtonText: this.$t('confirm'),
                 cancelButtonText: this.$t('cancel'),
                 type: 'warning'
@@ -177,7 +208,8 @@ import axios from 'axios'
                     type: 'success'
                 })    
                 this.sourcedata = [] 
-                this.$parent.$parent.$parent.fetchDataSourceList()        
+                this.headers = []
+                this.$parent.$parent.$parent.fetchDataSourceList()       
             },
             error => {
                 this.$message({
@@ -226,6 +258,16 @@ import axios from 'axios'
         handleTwo () {
             this.dataSourceEdit.deleteColumnName.push(this.currentColumn.property)
             this.removeRowAndColumn()
+        },
+
+        deleteRow (index, row) {
+            if (JSON.stringify(row) == "{}") {
+                this.showMessage(this.$t('error'), this.$t('datasource.message.deleteMessage'), "error")
+                return
+            }
+            let rowIndexInDataSource = this.getRowIndexInDataSource(row)
+            this.dataSourceEdit.deleteRowIndex.push(rowIndexInDataSource)
+            this.removeRowAndColumn()            
         },
         
         async fetchDataSource() {
@@ -296,7 +338,9 @@ import axios from 'axios'
             })   
             this.fetchDataSource()
             this.fetchDataSourceSize()
-            this.$parent.$parent.$parent.el_aside_loading = false         
+            this.$parent.$parent.$parent.el_aside_loading = false   
+            this.dataSourceEdit.deleteColumnName = []
+            this.dataSourceEdit.deleteRowIndex = []
         },
 
         // Get the index of row in data source

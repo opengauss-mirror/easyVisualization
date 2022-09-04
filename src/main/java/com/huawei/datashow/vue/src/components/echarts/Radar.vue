@@ -4,7 +4,7 @@
     <el-scrollbar>
       <el-alert id="alert-data-source-size" :title="'Total: ' + dataSourceSizeMax"  type="success" :closable="false"    ></el-alert>       
       <el-alert title="选择数据范围" type="info" :closable="false"   ></el-alert>       
-      <el-form label-width="auto"> 
+      <el-form label-position="left" label-width="40%"> 
         <el-form-item :label="$t('Radar.el-form-item.data_start_index')"  >
           <el-input-number v-model="startIndex" @change="updateDatas" :min="0" :max="this.dataSourceSizeMax" size="mini"></el-input-number>
         </el-form-item>    
@@ -13,7 +13,7 @@
         </el-form-item>                          
       </el-form>     
       <el-alert :title="$t('Radar.el-alert.title_set')" type="info" :closable="false"   ></el-alert>
-      <el-form label-width="auto">
+      <el-form label-position="left" label-width="40%">
         <el-form-item
           :label="$t('Radar.el-form-item.whether_show_title')"
            
@@ -112,7 +112,7 @@
       </el-form> 
 
       <el-alert :title="$t('Radar.el-alert.legend_setting')" type="info" :closable="false"   ></el-alert>       
-      <el-form label-width="auto">     
+      <el-form label-position="left" label-width="40%">     
 
         <el-form-item
           :label="$t('Radar.el-form-item.legend_display_position')"
@@ -160,7 +160,7 @@
       </el-form>
 
       <el-alert :title="$t('Radar.el-alert.Radar_chart_settings')" type="info" :closable="false"   ></el-alert>   
-      <el-form label-width="auto"> 
+      <el-form label-position="left" label-width="40%"> 
 
         <el-form-item :label="$t('Radar.el-form-item.Radar_left_distance')"  >
           <el-input-number v-model="echarts_radar_center_left" @change="handle_echarts_radar_center_left" :min="0" :max="100" size="mini"></el-input-number>

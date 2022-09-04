@@ -23,7 +23,7 @@ public class HandleDataSourceServiceImpl implements HandleDataSourceService{
     OpenGaussDataBaseService openGaussDataBaseServiceImpl;
 
     @Override
-    public void saveDataSource(String pollName, String sql, String dataSourceName) throws IOException {
+    public void saveDataSource(String pollName, String sql, String dataSourceName) throws Exception {
         String countSql = SQLUtil.getCountSql(sql);
         List<Map> arrayList = JSON.parseObject(openGaussDataBaseServiceImpl.getSourceData(pollName, countSql), ArrayList.class);
         int count = (int) arrayList.get(0).get("count");
@@ -84,6 +84,11 @@ public class HandleDataSourceServiceImpl implements HandleDataSourceService{
     @Override
     public void editDataSource(String dataSourceName, DataSourceEditBean dataSourceEditBean) throws IOException {
         YAMLUtil.writeYAMLFile(dataSourceName, dataSourceEditBean);
+    }
+
+    @Override
+    public void reloadDataSource(String dataSourceName) throws IOException {
+        YAMLUtil.createYAMLFile(dataSourceName);
     }
 
     @Override

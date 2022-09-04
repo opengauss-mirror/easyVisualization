@@ -35,6 +35,7 @@ public class YAMLUtil {
         dataSourceEdit.put("deleteRowIndex", new ArrayList<>());
         dataSourceEdit.put("deleteColumnName", new ArrayList<>());
         yaml.dump(dataSourceEdit, fileWriter);
+        fileWriter.close();
     }
 
     public static void writeYAMLFile(String fileName, DataSourceEditBean dataSourceEditBean) throws IOException {
@@ -62,18 +63,23 @@ public class YAMLUtil {
         dataSourceEditBeanYaml.setDeleteRowIndex(deleteRowIndexYaml);
         dataSourceEditBeanYaml.setDeleteColumnName(deleteColumnNameYaml);
 
+        FileWriter fileWriter = new FileWriter(new File(getPath(fileName)));
+
         Yaml yaml = getYaml();
-        yaml.dump(dataSourceEditBeanYaml, new FileWriter(new File(getPath(fileName))));
+        yaml.dump(dataSourceEditBeanYaml, fileWriter);
+        fileWriter.close();
     }
 
     public static void removeYAMLFile(String fileName) throws IOException {
         Files.delete(Paths.get(getPath(fileName)));
     }
 
-    public static DataSourceEditBean readYAMLFile(String fileName) throws FileNotFoundException {
+    public static DataSourceEditBean readYAMLFile(String fileName) throws IOException {
         Yaml yaml = getYaml();
         FileInputStream fileInputStream = new FileInputStream(new File(getPath(fileName)));
-        return yaml.loadAs(fileInputStream, DataSourceEditBean.class);
+        DataSourceEditBean dataSourceEditBean = yaml.loadAs(fileInputStream, DataSourceEditBean.class);
+        fileInputStream.close();
+        return dataSourceEditBean;
     }
 
 }

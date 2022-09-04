@@ -14,6 +14,7 @@
   
       <el-form-item :label="$t('dialog-form.el-form-item.choose_legend')">
         <el-select multiple v-model="form.yOptions" >
+          <el-checkbox v-model="form_y_options_select_all" size="mini" @change="form_y_options_selectAll">{{$t('selectAll')}}</el-checkbox>
           <el-option
             v-for="columnName in columnNames"
             :label="columnName"
@@ -36,7 +37,7 @@
   
     <el-form :model="combinationForm" label-width="auto" v-if="this.formType == 'combination'">
       <el-form-item :label="$t('dialog-form.el-form-item.choose_data_source')">
-        <el-select v-model="combinationForm.dataSourceName"   @change="fetchColumnNames">
+        <el-select v-model="combinationForm.dataSourceName" @change="fetchColumnNames">
           <el-option
             v-for="dataSourceName in dataSourceList"
             :label="dataSourceName"
@@ -48,6 +49,7 @@
   
       <el-form-item :label="$t('dialog-form.el-form-item.choose_a_column_chart_legend')">
         <el-select multiple v-model="combinationForm.yOptions.bar_yOptions"  >
+          <el-checkbox v-model="combination_form_bar_y_options_select_all" size="mini" @change="combination_form_bar_y_options_selectAll">{{$t('selectAll')}}</el-checkbox>
           <el-option
             v-for="columnName in columnNames"
             :label="columnName"
@@ -58,6 +60,7 @@
   
       <el-form-item :label="$t('dialog-form.el-form-item.choose_a_line_chart_legend')">
         <el-select multiple v-model="combinationForm.yOptions.line_yOptions"  >
+          <el-checkbox v-model="combination_form_line_y_options_select_all" size="mini" @change="combination_form_line_y_options_selectAll">{{$t('selectAll')}}</el-checkbox>
           <el-option
             v-for="columnName in columnNames"
             :label="columnName"
@@ -126,6 +129,7 @@
   
       <el-form-item :label="$t('dialog-form.el-form-item.choose_dimension')">
         <el-select multiple v-model="form.yOptions"  >
+          <el-checkbox v-model="form_y_options_select_all" size="mini" @change="form_y_options_selectAll">{{$t('selectAll')}}</el-checkbox>
           <el-option
             v-for="columnName in columnNames"
             :label="columnName"
@@ -204,11 +208,14 @@
       data() {
         return {
           columnNames:[],
+          form_y_options_select_all:false,
           form: {
             dataSourceName: '',
             xOption:'',
             yOptions: []
           },
+          combination_form_bar_y_options_select_all:false,
+          combination_form_line_y_options_select_all:false,
           combinationForm: {
             dataSourceName: '',
             xOption:'',
@@ -222,7 +229,8 @@
             xOption:'',
             yOption:'',
             zOption:''
-          }        
+          },
+                 
         };
       },
       methods: {
@@ -286,7 +294,31 @@
                   },
                   error => {}
               )              
-          }
+          },
+          form_y_options_selectAll(val) {
+            this.form.yOptions = []
+            if (val) {
+              for (let i = 0; i < this.columnNames.length; i++) {
+                this.form.yOptions.push(this.columnNames[i]);
+              }
+            }
+          },
+          combination_form_bar_y_options_selectAll(val) {
+            this.combinationForm.yOptions.bar_yOptions = []
+            if (val) {
+              for (let i = 0; i < this.columnNames.length; i++) {
+                this.combinationForm.yOptions.bar_yOptions.push(this.columnNames[i]);
+              }
+            }            
+          },
+          combination_form_line_y_options_selectAll(val) {
+            this.combinationForm.yOptions.line_yOptions = []
+            if (val) {
+              for (let i = 0; i < this.columnNames.length; i++) {
+                this.combinationForm.yOptions.line_yOptions.push(this.columnNames[i]);
+              }
+            }            
+          },          
       },
     };
   </script>

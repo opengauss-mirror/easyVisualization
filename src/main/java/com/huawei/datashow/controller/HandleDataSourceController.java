@@ -27,7 +27,7 @@ public class HandleDataSourceController {
         try {
             handleDataSourceServiceImpl.saveDataSource(pollName, sql, dataSourceName);
             return Result.OK("数据源保存成功");
-        } catch (IOException e) {
+        } catch (Exception e) {
             e.printStackTrace();
             return Result.error("数据源保存失败");
         }
@@ -79,6 +79,17 @@ public class HandleDataSourceController {
         try {
             handleDataSourceServiceImpl.editDataSource(paramDataSourceEditBean.getDataSourceName(), paramDataSourceEditBean.getDataSourceEditBean());
             return Result.OK("删除成功");
+        } catch (IOException ioException) {
+            ioException.printStackTrace();
+            return Result.error("接口调用失败");
+        }
+    }
+
+    @GetMapping("/reload-data-source")
+    public Result<Object> reloadDataSource(@RequestParam("dataSourceName") String dataSourceName) {
+        try {
+            handleDataSourceServiceImpl.reloadDataSource(dataSourceName);
+            return Result.OK();
         } catch (IOException ioException) {
             ioException.printStackTrace();
             return Result.error("接口调用失败");

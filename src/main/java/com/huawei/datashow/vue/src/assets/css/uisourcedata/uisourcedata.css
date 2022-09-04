@@ -1,6 +1,12 @@
 #scrollbar{
     height: 100%
 }
+#backButton{
+    width: 100%;
+    border-radius: 0;
+    height:30px;
+    font-size: small;
+}
 
 #aside{
     background-color:#F2F6FC

@@ -8,9 +8,25 @@
         class="login_container"
         id = "login_container"
         size="mini"
+        v-loading.fullscreen.lock="loading"
+        :element-loading-text="$t('loading.text')"
+        element-loading-spinner="el-icon-loading"
+        element-loading-background="rgba(0, 0, 0, 0.8)">
+
+        <h3 class="login_title">{{$t('login.form.formName')}} 
+            <el-tooltip class="item" placement="top-start" effect="light">
+                <div slot="content">  
+                    <h3>
+                        1.{{$t('login.tips.pg_hba_conf1')}}                 
+                        <el-link href="https://opengauss.org/zh/docs/2.1.0/docs/Developerguide/配置服务端远程连接.html" target="_blank">{{$t('login.tips.pg_hba_conf2')}}</el-link>  
+                        {{$t('login.tips.pg_hba_conf3')}}<br>
+                        2.{{$t('login.tips.ban_omm')}}
+                    </h3>
+                </div>
+                <i class="el-icon-info"></i>
+            </el-tooltip>
+        </h3>
         
-    >
-        <h3 class="login_title">{{$t('login.form.formName')}}</h3>
         <el-form-item 
             :label="$t('login.form.pollName')"
             label-width="80px"
@@ -85,10 +101,12 @@
                 v-model="form.password"
                 autocomplete="off">
             </el-input>
-        </el-form-item>                      
-        <el-button type="primary" @click="login" class="login-submit">{{$t('login.button.confirmButton')}}</el-button>
-        
+        </el-form-item>      
+        <el-button type="primary" size="small" @click="login" class="login-submit">{{$t('confirm')}}</el-button>   
+        <el-button type="info" size="small" @click="back" class="login-submit">{{$t('back')}}</el-button>          
     </el-form>
+    
+    
 </template>
 
 <script>
@@ -99,6 +117,7 @@ export default {
     name:'Login',
     data(){
         return{
+            loading:false,
             form:{
                 username:'',
                 password:'',
@@ -140,42 +159,46 @@ export default {
         }
     },
     methods:{
-        login(){
+        async login(){
             if(this.form.port == ''){
                 this.form.port = '5432'
             }
             this.$refs['form'].validate((valid) => {
                 if(valid){
-                    axios({
-                        url:'/updateDataSource/addHikariCP',
-                        method:"post",
-                        data:this.DTOform,
-                    }).then(
-                        response => {
-                            if(response.data == 'success'){
-                                router.push('/home/processeddatas/uisourcedata')  
-                                this.$notify({
-                                    title: $t('success'),
-                                    type: "success"
-                                });                                            
-                            }else{
-                                this.$notify({
-                                    title: $t('fail'),
-                                    type: "error"
-                                });
-                            }
-                        },
-                        error => {}
-                    )                    
+                   this.submit()
                 }
             })
-
-            
         },
+        async submit() {
+            this.loading = true
+            await axios({
+                url:'/updateDataSource/addHikariCP',
+                method:"post",
+                data:this.DTOform,
+            }).then(
+                response => {
+                    if(response.data.code == 200){
+                        router.push('/home/processeddatas/uisourcedata')  
+                        this.$notify({
+                            title: this.$t('success'),
+                            type: "success",
+                            message: response.data.message,
+                        });                                            
+                    }else {
+                        this.$alert(response.data.message, this.$t('tips'), {
+                            confirmButtonText: this.$t('confirm')
+                        });
+                    }                        
+                },
+                error => {}
+            )
+            this.loading = false 
+        },
+        back() {
+            router.push("/home/processeddatas/addsourcedata")
+        }
     },
-    mounted() {
-        console.log(this.$t)
-    },
+    mounted() {},
 }
 </script>
 
