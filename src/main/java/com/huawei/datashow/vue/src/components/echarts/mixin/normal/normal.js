@@ -9,7 +9,7 @@ export const normal = {
           series: [],
           option: {
             title: {
-              text: 'echarts',
+              text: this.$t('title'),
               show: true,
               textStyle:{
                 color: '#000000',
@@ -59,23 +59,33 @@ export const normal = {
               }
             },        
             tooltip: {
-              trigger: 'axis',
-              axisPointer: { type: 'cross' }
+                trigger: 'axis',
+                axisPointer: { type: 'cross' }
             },        
             boundaryGap:false,
             dataset:[],
             xAxis: {
-              type: 'category',
-              axisLabel:{
-                fontSize:12,   
-                interval:'auto',
-                rotate:0
-              }
+                name: '',
+                nameTextStyle: {
+                    color:'',
+                    fontSize:12
+                },
+                type: 'category',
+                axisLabel:{
+                    fontSize:12,   
+                    interval:0,
+                    rotate:0
+                }
             },
             yAxis: {
-              axisLabel:{
-                fontSize:12,
-              }
+                name: '',
+                nameTextStyle: {
+                    color:'',
+                    fontSize:12
+                },                
+                axisLabel:{
+                    fontSize:12,
+                },
             },
             series:[]
           },
@@ -115,13 +125,27 @@ export const normal = {
           
           echarts_grid_bottom:70,
     
-          
+          echarts_xAxis_name:'',
+
+          echarts_xAxis_nameTextStyle_color:'#000000',
+
+          echarts_xAxis_nameTextStyle_fontSize:12,
+
           echarts_xAxis_axisLabel_fontSize:12,
           
           echarts_xAxis_axisLabel_interval:0,
           
           echarts_xAxis_axisLabel_rotate:0,
-    
+
+          echarts_yAxis_max:0,
+
+          echarts_yAxis_min:0,
+
+          echarts_yAxis_name:'',
+
+          echarts_yAxis_nameTextStyle_color:'#000000',
+
+          echarts_yAxis_nameTextStyle_fontSize:12,          
           
           echarts_yAxis_axisLabel_fontSize:12,
     
@@ -143,12 +167,12 @@ export const normal = {
         }
     },  
     watch: {
-    datasets: {
-        handler: function() {
-        this.refreshEcharts()
-        },
-        deep: true
-    }
+        datasets: {
+            handler: function() {
+            this.refreshEcharts()
+            },
+            deep: true
+        }
     },
     methods: {
     
@@ -222,7 +246,6 @@ export const normal = {
 
     
     handle_echarts_series_name(){
-        
         this.option.series = this.series
         myChart.setOption(this.option)
     },
@@ -306,6 +329,21 @@ export const normal = {
         this.option.grid.bottom = value
         myChart.setOption(this.option)
     },     
+
+    handle_echarts_xAxis_name(value){
+        this.option.xAxis.name = value
+        myChart.setOption(this.option)
+    },
+
+    handle_echarts_xAxis_nameTextStyle_color(){
+        this.option.xAxis.nameTextStyle.color = this.echarts_xAxis_nameTextStyle_color
+        myChart.setOption(this.option)
+    },
+
+    handle_echarts_xAxis_nameTextStyle_fontSize(value){
+        this.option.xAxis.nameTextStyle.fontSize = value
+        myChart.setOption(this.option)
+    },
     
     
     handle_echarts_xAxis_axisLabel_fontSize(value){
@@ -323,7 +361,31 @@ export const normal = {
         myChart.setOption(this.option)
     },
 
-    
+    handle_echarts_yAxis_max(value){
+        this.option.yAxis.max = value
+        myChart.setOption(this.option)
+    },
+
+    handle_echarts_yAxis_min(value){
+        this.option.yAxis.min = value
+        myChart.setOption(this.option)
+    },
+
+    handle_echarts_yAxis_name(value){
+        this.option.yAxis.name = value
+        myChart.setOption(this.option)
+    },
+
+    handle_echarts_yAxis_nameTextStyle_color(){
+        this.option.yAxis.nameTextStyle.color = this.echarts_yAxis_nameTextStyle_color
+        myChart.setOption(this.option)
+    },
+
+    handle_echarts_yAxis_nameTextStyle_fontSize(value){
+        this.option.yAxis.nameTextStyle.fontSize = value
+        myChart.setOption(this.option)
+    },
+
     handle_echarts_yAxis_axisLabel_fontSize(value){
         this.option.yAxis.axisLabel.fontSize = value
         myChart.setOption(this.option)

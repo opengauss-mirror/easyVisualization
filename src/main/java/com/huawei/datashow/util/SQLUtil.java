@@ -22,16 +22,7 @@ public class SQLUtil {
      * @return
      */
     public static String getCountSql(String sql) {
-        String tableName = getColumnName(sql);
-        String countSql = sql.replace(tableName, "count(*)");
-
-        if (countSql.lastIndexOf("ORDER") != -1) {
-            countSql = countSql.substring(0, countSql.lastIndexOf("ORDER"));
-        }
-
-        if (sql.lastIndexOf("GROUP") != -1) {
-            countSql = countSql.substring(0, countSql.lastIndexOf("GROUP"));
-        }
+        String countSql = "SELECT COUNT(*) FROM (" + sql + ")";
         return countSql;
     }
 

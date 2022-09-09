@@ -2,6 +2,8 @@ package com.huawei.datashow.controller;
 
 import com.huawei.datashow.service.ConnectionPoolService;
 import com.huawei.datashow.bean.ConnectionPoolDTOBean;
+import com.huawei.datashow.util.MyException;
+import com.huawei.datashow.util.Result;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -28,9 +30,14 @@ public class ConnectionPoolController
     }
 
     @PostMapping("/addHikariCP")
-    public String addHikariCP(@Validated @RequestBody ConnectionPoolDTOBean dto)
+    public Result<Object> addHikariCP(@Validated @RequestBody ConnectionPoolDTOBean dto)
     {
-        return connectionPoolService.addHikariCP(dto);
+        try {
+            connectionPoolService.addHikariCP(dto);
+            return Result.OK("建立数据源连接成功！");
+        } catch (MyException e) {
+            return Result.error(e.getMessage());
+        }
     }
 
     @PostMapping("/removeHikariCP")

@@ -9,8 +9,7 @@
             "button_toLogin":"Add database connection",
             "button_toUISourceData":"Select database connection",
             "button_toUploadXlsOrXlsxFile":"Import xls or xlsx file",
-            "button_toUploadCSVFile":"Import csv file",
-            "button_toUploadTxtFile":"Import txt file"
+            "button_toUploadCSVOrTXTFile":"Import csv or txt file"
         }
     },
     "contextbutton": {
@@ -23,12 +22,13 @@
         "button": {
             "button_deleteSelection": "Delete the selected line",
             "button_preserve": "Save changes",
-            "button_deleteSourceData": "Remove data sources",
+            "button_reload": "Reload data source",
+            "button_deleteSourceData": "Remove data source",
             "button_fatherMethodHandelSelectDataIsActive": "Visualization"
         },
         "message": {
           "deleteMessage":"Deleted data is selected, please do not delete it repeatedly",
-          "bigSizeMessage":"The amount of data is large and it takes a long time to save and modify. Do you want to execute it?"
+          "bigSizeMessage":"The amount of data is large and it takes a long time to save and modify!"
         }
     },
     "dialog-form": {
@@ -76,9 +76,17 @@
           "axis_right":"Grid right distance",
           "axis_top":"Distance above grid",
           "axis_bottom":"Distance below the grid",
+          "xAxis_name":"xAxis name",
+          "xAxis_name_color":"Color of xAxis name",
+          "xAxis_name_size":"Font size of xAxis name",
           "xAxis_font_size":"Horizontal axis font size",
           "xAxis_label_distance":"Label interval",
           "xAxis_label_angel":"Label rotation angle",
+          "yAxis_name":"yAxis name",
+          "yAxis_max":"yAxis value Max",
+          "yAxis_min":"yAxis value Min",
+          "yAxis_name_color":"Color of yAxis name",
+          "yAxis_name_size":"Font size of yAxis name",
           "yAxis_font_size":"Vertical axis font size",
           "data_zoom":"Zoom control below",
           "echarts_text_label":"Graphic text label"
@@ -155,6 +163,8 @@
             "grid_right_distance": "Grid right distance",
             "grid_top_distance": "Distance above grid",
             "grid_bottom_distance": "Distance below the grid",
+            "xAxis_max":"xAxis value Max",
+            "xAxis_min":"xAxis value Min",
             "Horizontal_font_size": "Horizontal axis font size",
             "Tab_spacing": "Label interval",
             "Label_rotation_angle": "Label rotation angle",
@@ -214,6 +224,14 @@
             "hide": "hide",
             "open": "open",
             "close": "close",
+            "top_left": "upper left",
+            "top": "Directly above",
+            "top_right": "upper right",
+            "right": "right",
+            "bottom_right": "lower right",
+            "bottom": "Directly below",
+            "bottom_left": "lower left",
+            "left": "left",
             "horizontal_arrangement": "Horizontal arrangement",
             "vertical_arrangement": "Vertical arrangement"
         },
@@ -234,11 +252,14 @@
             "username": "user name",
             "password": "password"
         },
-        "button": {
-          "confirmButton": "登陆"
-        },
         "message": {
           "notNull":"不能为空"
+        },
+        "tips": {
+            "pg_hba_conf1":"Confirm you have readed",
+            "pg_hba_conf2":"openGauss user manual",
+            "pg_hba_conf3":"and configured client remote connection white list",
+            "ban_omm":"Can't use openGauss initialized user to establish remote connection"
         }
     },
     "processeddatas": {
@@ -323,13 +344,16 @@
     "uploadcsvfile": {
         "button": {
             "button_select_file": "Select file",
-            "button_submitUpload": "Upload to server"
+            "button_submitUpload": "Upload to server",
+            "button_back":"cancel"
         },
         "div": {
-            "make_sure": "Please make sure that the first line in the uploaded CSV file is the header!"
+            "make_sure": "Please make sure that the first line in the uploaded CSV file is the header!",
+            "size": "Size of file must smaller than 5MB"
         },
         "message": {
-          "file_num":"The current limit is 1 file!"
+          "file_num":"The current limit is 1 file!",
+          "upload_error":"Oversize!"
         }
     },
     "uploadtxtfile": {
@@ -338,7 +362,9 @@
             "button_submitUpload": "Upload to server"
         },
         "div": {
-            "make_sure": "Please make sure that the first line in the uploaded TXT file is the header!"
+            "make_sure": "Please make sure that the first line in the uploaded TXT file is the header!",
+            "make_sure_separator": "Please make sure the delimiter of the uploaded TXT file is', '",
+            "size": "Size of file must smaller than 5MB"
         }
     },
     "uploadxlsorxlsxfile": {
@@ -347,7 +373,8 @@
             "button_submitUpload": "Upload to server"
         },
         "div": {
-            "make_sure": "Please make sure that the first line in the uploaded xls and xlsx files is the header!"
+            "make_sure": "Please make sure that the first line in the uploaded xls and xlsx files is the header!",
+            "size": "Size of file must smaller than 5MB"
         }
     },
     "echartsType":{
@@ -364,14 +391,18 @@
     "loading": {
       "text": "Loading"
     },
+    "selectAll":"All",
     "show":"display",
     "hidden":"Don't show",
+    "operation":"operation",
     "remove":"delete",
     "submit":"Submit",
     "error": "error",
     "tips": "Tips",
-    "confirm" : "determine",
+    "confirm" : "confirm",
     "cancel": "cancel",
     "success":"success",
-    "fail":"fail"
+    "fail":"fail",
+    "back":"back",
+    "title":"Title"
   }

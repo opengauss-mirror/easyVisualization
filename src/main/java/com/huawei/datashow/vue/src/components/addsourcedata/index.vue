@@ -1,9 +1,9 @@
 <template>
   <div id="addsourcedata">
     <el-row id="addsourcedata_ways">
-        <el-col :span="8">
+        <el-col :span="12">
             <el-card :body-style="{padding: '0px'}" shadow="hover" >
-                <img src="@/assets/opengauss.svg" class="image" id="img_opengauss">
+                <img src="@/assets/database-2-line.svg" class="image" id="img_database">
                 <div class="description">
                     <span id="span_opengauss">{{$t('addsourcedata.span.span_opengauss')}}</span>
                     <div class="bottom clearfix">
@@ -14,31 +14,18 @@
             </el-card>
         </el-col>
         
-        <el-col :span="8">
+        <el-col :span="12">
             <el-card :body-style="{ padding: '0px' }" shadow="hover">
                 <!-- This svg is from https://remixicon.com -->
-                <img src="@/assets/file-excel-2-line.svg" class="image" id="img_excel">
+                <img src="@/assets/folder-upload-line.svg" class="image" id="img_excel">
                 <div class="description" >
                     <span id="span_excel">{{$t('addsourcedata.span.span_excel')}}</span>
                     <div class="bottom clearfix">
                         <el-button type="text" class="button" @click="toUploadXlsOrXlsxFile">{{$t('addsourcedata.button.button_toUploadXlsOrXlsxFile')}}</el-button>
-                        <el-button type="text" class="button" @click="toUploadCSVFile">{{$t('addsourcedata.button.button_toUploadCSVFile')}}</el-button>
+                        <el-button type="text" class="button"  @click="toUploadCSVOrTxtFile">{{$t('addsourcedata.button.button_toUploadCSVOrTXTFile')}}</el-button>
                     </div>
                 </div>
             </el-card>            
-        </el-col>
-
-        <el-col :span="8">
-            <el-card :body-style="{ padding: '0px' }" shadow="hover">
-                <!-- This svg is from https://remixicon.com -->
-                <img src="@/assets/file-text-line.svg" class="image" id="img_txt">
-                <div class="description">
-                    <span id="span_txt">{{$t('addsourcedata.span.span_txt')}}</span>
-                    <div class="bottom clearfix">
-                        <el-button type="text" class="button"  @click="toUploadTxtFile">{{$t('addsourcedata.button.button_toUploadTxtFile')}}</el-button><br>
-                    </div>
-                </div>
-            </el-card>      
         </el-col>
     </el-row>   
   </div> 
@@ -61,12 +48,9 @@ import router from '@/router';
       toUploadXlsOrXlsxFile(){
         router.push('/home/processeddatas/uploadxlsorxlsxfile')
       },
-      toUploadCSVFile(){
-        router.push('/home/processeddatas/uploadcsvfile')
-      },
-      toUploadTxtFile(){
-        router.push('/home/processeddatas/uploadtxtfile')
-      },      
+      toUploadCSVOrTxtFile(){
+        router.push('/home/processeddatas/uploadcsvortxtfile')
+      }
     }
   }
 </script>

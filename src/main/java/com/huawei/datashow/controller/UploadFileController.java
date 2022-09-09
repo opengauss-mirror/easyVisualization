@@ -27,11 +27,11 @@ public class UploadFileController
             return Result.OK();
         } catch (IOException ioException) {
             ioException.printStackTrace();
-            return Result.error("接口调用失败");
+            return Result.error("已上传，但文件为空或格式不匹配，请删除并重新上传！");
         }
     }
 
-    @PostMapping("/uploadCSVFile")
+    @PostMapping("/uploadCSVOrTxtFile")
     public Result<Object> uploadCSVFile(MultipartFile file)
     {
         try {
@@ -39,33 +39,7 @@ public class UploadFileController
             return Result.OK();
         } catch (IOException ioException) {
             ioException.printStackTrace();
-            return Result.error("接口调用失败");
-        }
-    }
-
-    @PostMapping("/uploadTXTFile")
-    public String uploadTXTFile(MultipartFile file, HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse)
-    {
-        if (file.getOriginalFilename().substring(file.getOriginalFilename().lastIndexOf('.')).equals(".txt"))
-        {
-            try
-            {
-                httpServletRequest.getRequestDispatcher("/uploadCSVFile").forward(httpServletRequest,httpServletResponse);
-            }
-            catch (ServletException servletException)
-            {
-                servletException.printStackTrace();
-                return "fail";
-            }
-            catch (IOException ioException)
-            {
-                return "fail";
-            }
-            return "redirect";
-        }
-        else
-        {
-            return "unfit";
+            return Result.error("已上传，但上传文件为空或格式不匹配，请删除并重新上传！");
         }
     }
 }

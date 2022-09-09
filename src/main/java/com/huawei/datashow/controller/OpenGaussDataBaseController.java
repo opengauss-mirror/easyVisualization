@@ -1,6 +1,9 @@
 package com.huawei.datashow.controller;
 
+import com.baomidou.dynamic.datasource.toolkit.DynamicDataSourceContextHolder;
 import com.fasterxml.jackson.core.JsonProcessingException;
+import com.huawei.datashow.bean.smbms_3DdataBean;
+import com.huawei.datashow.mapper.OpenGaussDataBaseMapper;
 import com.huawei.datashow.service.OpenGaussDataBaseService;
 import com.huawei.datashow.util.SQLUtil;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,9 +17,12 @@ public class OpenGaussDataBaseController
     @Autowired
     private OpenGaussDataBaseService openGaussDataBaseServiceImpl;
 
+    @Autowired
+    private OpenGaussDataBaseMapper openGaussDataBaseMapper;
+
     @GetMapping("/getSchema")
     public String getSchema(@RequestParam("pollName") String pollName,
-                            @RequestParam("sql") String sql) throws JsonProcessingException {
+                            @RequestParam("sql") String sql) throws Exception {
         return openGaussDataBaseServiceImpl.getSourceData(pollName, sql);
     }
 
@@ -29,7 +35,7 @@ public class OpenGaussDataBaseController
      */
     @GetMapping("/getTables")
     public String getTables(@RequestParam("pollName") String pollName,
-                            @RequestParam("sql") String sql) throws JsonProcessingException {
+                            @RequestParam("sql") String sql) throws Exception {
         return openGaussDataBaseServiceImpl.getSourceData(pollName, sql);
     }
 
@@ -42,7 +48,7 @@ public class OpenGaussDataBaseController
      */
     @GetMapping("/getSourceData")
     public String getSourceData(@RequestParam("pollName") String pollName,
-                                @RequestParam("sql") String sql) throws JsonProcessingException {
+                                @RequestParam("sql") String sql) throws Exception {
         return openGaussDataBaseServiceImpl.getSourceData(pollName,sql);
     }
 
@@ -58,15 +64,17 @@ public class OpenGaussDataBaseController
     public String showSourceData(@RequestParam("pollName") String pollName,
                                  @RequestParam("sql") String sql,
                                  @RequestParam("startIndex") int startIndex,
-                                 @RequestParam("limit") int limit) throws JsonProcessingException {
+                                 @RequestParam("limit") int limit) throws Exception {
         String limitSql = SQLUtil.getLimitSql(sql, startIndex, limit);
         return openGaussDataBaseServiceImpl.getSourceData(pollName, limitSql);
     }
 
     @GetMapping("/getCount")
     public String getCount(@RequestParam("pollName") String pollName,
-                           @RequestParam("sql") String sql) throws JsonProcessingException {
+                           @RequestParam("sql") String sql) throws Exception {
         String countSql = SQLUtil.getCountSql(sql);
         return openGaussDataBaseServiceImpl.getSourceData(pollName, countSql);
     }
+
+
 }

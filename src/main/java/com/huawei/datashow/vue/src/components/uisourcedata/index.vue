@@ -2,6 +2,14 @@
   <el-container>
     <el-aside id="aside" width="270px">
       <el-scrollbar id="scrollbar">
+          <el-button 
+            id="backButton" 
+            size="mini" 
+            type="info" 
+            icon="el-icon-back" 
+            @click='back'>
+            {{$t('back')}}
+          </el-button>
           <el-alert
             :title="$t('uisourcedata.el-alert.Select_database_connection')"
             type="info"
@@ -293,6 +301,7 @@
 <script>
 import axios from 'axios'
 import SourceData from '@/components/sourcedata'
+import router from '@/router';
 export default {
 data() {
   return {
@@ -584,6 +593,10 @@ methods: {
       error => {
       }
     )         
+  },
+
+  back() {
+    router.push("/home/processeddatas/addsourcedata")
   }
 },
 mounted() {

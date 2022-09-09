@@ -1,12 +1,12 @@
 <template>
     <el-container id="echarts_container">
       <el-aside width="18%">
-        <el-scrollbar >
+        <el-scrollbar>
           <el-alert id="alert-data-source-size" :title="'Total: ' + dataSourceSizeMax" type="success" :closable="false" ></el-alert>       
           <el-alert :title="$t('Radar.el-form-item.data_range')" type="info" :closable="false"></el-alert>       
-          <el-form label-width="auto"> 
+          <el-form label-position="left" label-width="40%"> 
             <el-form-item :label="$t('Radar.el-form-item.data_start_index')">
-              <el-input-number v-model="startIndex" @change="updateDataSet" :min="0" :max="this.dataSourceSizeMax" size="mini" width="10px"></el-input-number>
+              <el-input-number v-model="startIndex" @change="updateDataSet" :min="0" :max="this.dataSourceSizeMax" size="mini"></el-input-number>
             </el-form-item>    
             <el-form-item :label="$t('Radar.el-form-item.data_end_index')">
               <el-input-number v-model="endIndex" @change="updateDataSet" :min="0" :max="this.dataSourceSizeMax" size="mini"></el-input-number>
@@ -14,7 +14,7 @@
           </el-form> 
   
           <el-alert :title="$t('Radar.el-alert.title_set')" type="info" :closable="false"></el-alert>
-          <el-form label-width="auto">
+          <el-form label-position="left" label-width="40%">
             <el-form-item
               :label="$t('Radar.el-form-item.whether_show_title')"
               >
@@ -102,7 +102,7 @@
           </el-form> 
   
           <el-alert :title="$t('Radar.el-alert.legend_setting')" type="info" :closable="false"></el-alert>       
-          <el-form label-width="auto"> 
+          <el-form label-position="left" label-width="40%"> 
             <!-- must add this v-if-->
             <el-form-item
               :label="$t('normal.item.item_legend_name')"
@@ -169,7 +169,7 @@
           </el-form>
           
           <el-alert :title="$t('normal.alert.axis_position')" type="info" :closable="false"></el-alert>       
-          <el-form label-width="auto"> 
+          <el-form label-position="left" label-width="40%"> 
             <el-form-item :label="$t('normal.item.axis_left')" >
               <el-input-number v-model="echarts_grid_left" @change="handle_echarts_grid_left" :min="0" :max="40" size="mini"></el-input-number>
             </el-form-item>     
@@ -189,13 +189,25 @@
           </el-form>      
   
           <el-alert :title="$t('normal.alert.xAxis_config')" type="info" :closable="false"></el-alert>  
-          <el-form label-width="auto">
+          <el-form label-position="left" label-width="40%">
+            <el-form-item :label="$t('normal.item.xAxis_name')">
+              <el-input v-model="echarts_xAxis_name" @change="handle_echarts_xAxis_name" size="mini"></el-input>
+            </el-form-item> 
+
+            <el-form-item :label="$t('normal.item.xAxis_name_color')">
+              <el-color-picker v-model="echarts_xAxis_nameTextStyle_color" size="small" @change="handle_echarts_xAxis_nameTextStyle_color"></el-color-picker>
+            </el-form-item>                         
+
+            <el-form-item :label="$t('normal.item.xAxis_name_size')">
+              <el-input-number v-model="echarts_xAxis_nameTextStyle_fontSize" @change="handle_echarts_xAxis_nameTextStyle_fontSize" :min="7" :max="33" size="mini"></el-input-number>
+            </el-form-item> 
+
             <el-form-item :label="$t('normal.item.xAxis_font_size')">
               <el-input-number v-model="echarts_xAxis_axisLabel_fontSize" @change="handle_echarts_xAxis_axisLabel_fontSize" :min="7" :max="33" size="mini"></el-input-number>
             </el-form-item>   
   
             <el-form-item :label="$t('normal.item.xAxis_label_distance')" >
-              <el-input-number v-model="echarts_xAxis_axisLabel_interval" @change="handle_echarts_xAxis_axisLabel_interval" :min="0" :max="3" size="mini"></el-input-number>
+              <el-input-number v-model="echarts_xAxis_axisLabel_interval" @change="handle_echarts_xAxis_axisLabel_interval" :min="0" :max="100" size="mini"></el-input-number>
             </el-form-item>     
   
             <el-form-item :label="$t('normal.item.xAxis_label_angel')" >
@@ -204,14 +216,34 @@
           </el-form>
   
           <el-alert :title="$t('normal.alert.yAxis_config')" type="info" :closable="false"></el-alert> 
-          <el-form label-width="auto">
+          <el-form label-position="left" label-width="40%">
+            <el-form-item :label="$t('normal.item.yAxis_max')">
+              <el-input v-model="echarts_yAxis_max" @change="handle_echarts_yAxis_max" size="mini"></el-input>
+            </el-form-item> 
+
+            <el-form-item :label="$t('normal.item.yAxis_min')">
+              <el-input v-model="echarts_yAxis_min" @change="handle_echarts_yAxis_min" size="mini"></el-input>
+            </el-form-item> 
+
+            <el-form-item :label="$t('normal.item.yAxis_name')">
+              <el-input v-model="echarts_yAxis_name" @change="handle_echarts_yAxis_name" size="mini"></el-input>
+            </el-form-item> 
+
+            <el-form-item :label="$t('normal.item.yAxis_name_color')">
+              <el-color-picker v-model="echarts_yAxis_nameTextStyle_color" size="small" @change="handle_echarts_yAxis_nameTextStyle_color"></el-color-picker>
+            </el-form-item>                         
+
+            <el-form-item :label="$t('normal.item.yAxis_name_size')">
+              <el-input-number v-model="echarts_yAxis_nameTextStyle_fontSize" @change="handle_echarts_yAxis_nameTextStyle_fontSize" :min="7" :max="33" size="mini"></el-input-number>
+            </el-form-item> 
+
             <el-form-item :label="$t('normal.item.yAxis_font_size')" >
               <el-input-number v-model="echarts_yAxis_axisLabel_fontSize" @change="handle_echarts_yAxis_axisLabel_fontSize" :min="7" :max="33" size="mini"></el-input-number>
             </el-form-item>                
           </el-form>
   
           <el-alert :title="$t('normal.alert.other_config')" type="info" :closable="false"></el-alert>   
-          <el-form label-width="auto"> 
+          <el-form label-position="left" label-width="40%"> 
             <el-form-item :label="$t('normal.item.data_zoom')" >
               <el-select v-model="echarts_data_zoom_is_active" size="mini"  @change="handle_echarts_data_zoom_is_active">
                 <el-option key="1" :label="$t('show')" :value="true"></el-option>

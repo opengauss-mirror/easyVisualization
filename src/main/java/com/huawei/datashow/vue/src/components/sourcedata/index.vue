@@ -120,7 +120,7 @@ export default {
         confirmButtonText: this.$t('confirm'),
         cancelButtonText: this.$t('cancel'),
       }).then(({ value }) => {
-        if (value == null || value.includes('.')) {    
+        if (value == null || value.includes('.') || this.$store.state.dataSourceList.indexOf(value) !== -1) {    
           this.$message({
             type: 'error',
             message: this.$t('sourcedata.message.wrong_data_source_name')

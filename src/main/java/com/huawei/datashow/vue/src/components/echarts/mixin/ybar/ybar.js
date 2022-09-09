@@ -15,7 +15,7 @@ export const ybar = {
           
           option: {
             title: {
-              text: 'echarts',
+              text: this.$t('title'),
               show: true,
               textStyle:{
                 color: '#000000',
@@ -72,17 +72,25 @@ export const ybar = {
             
             dataset:[],
             xAxis: {
+              name: '',
+              nameTextStyle: {
+                  color:'',
+                  fontSize:12
+              },              
               axisLabel:{
-                fontSize:12,   
-                interval:'auto',
-                rotate:0
+                fontSize:12
               }
             },
             yAxis: {
+              name: '',
+              nameTextStyle: {
+                  color:'',
+                  fontSize:12
+              },              
               type: 'category',
               axisLabel:{
                 fontSize:12,   
-                interval:'auto',
+                interval:0,
                 rotate:0
               }
             },
@@ -127,7 +135,16 @@ export const ybar = {
           echarts_grid_top:60,
           
           echarts_grid_bottom:70,
+
+          echarts_xAxis_max:0,
+
+          echarts_xAxis_min:0,
     
+          echarts_xAxis_name:'',
+
+          echarts_xAxis_nameTextStyle_color:'#000000',
+
+          echarts_xAxis_nameTextStyle_fontSize:12,
           
           echarts_xAxis_axisLabel_fontSize:12,
           
@@ -135,10 +152,14 @@ export const ybar = {
           
           echarts_xAxis_axisLabel_rotate:0,
     
+          echarts_yAxis_name:'',
+
+          echarts_yAxis_nameTextStyle_color:'#000000',
+
+          echarts_yAxis_nameTextStyle_fontSize:12,   
           
           echarts_yAxis_axisLabel_fontSize:12,
     
-          
           echarts_data_zoom_is_active:true,
           
           echarts_series_label_show:false,            
@@ -319,7 +340,31 @@ export const ybar = {
           this.option.grid.bottom = value
           myChart.setOption(this.option)
         },     
+
+      handle_echarts_xAxis_max(value){
+          this.option.xAxis.max = value
+          myChart.setOption(this.option)
+      },
+
+      handle_echarts_xAxis_min(value){
+          this.option.xAxis.min = value
+          myChart.setOption(this.option)
+      },        
         
+        handle_echarts_xAxis_name(value){
+            this.option.xAxis.name = value
+            myChart.setOption(this.option)
+        },
+
+        handle_echarts_xAxis_nameTextStyle_color(){
+            this.option.xAxis.nameTextStyle.color = this.echarts_xAxis_nameTextStyle_color
+            myChart.setOption(this.option)
+        },
+
+        handle_echarts_xAxis_nameTextStyle_fontSize(value){
+            this.option.xAxis.nameTextStyle.fontSize = value
+            myChart.setOption(this.option)
+        },        
         
         handle_echarts_xAxis_axisLabel_fontSize(value){
           this.option.xAxis.axisLabel.fontSize = value
@@ -335,8 +380,22 @@ export const ybar = {
           this.option.xAxis.axisLabel.rotate = value
           myChart.setOption(this.option)
         },
-    
         
+        handle_echarts_yAxis_name(value){
+            this.option.yAxis.name = value
+            myChart.setOption(this.option)
+        },
+
+        handle_echarts_yAxis_nameTextStyle_color(){
+            this.option.yAxis.nameTextStyle.color = this.echarts_yAxis_nameTextStyle_color
+            myChart.setOption(this.option)
+        },
+
+        handle_echarts_yAxis_nameTextStyle_fontSize(value){
+            this.option.yAxis.nameTextStyle.fontSize = value
+            myChart.setOption(this.option)
+        },    
+            
         handle_echarts_yAxis_axisLabel_fontSize(value){
           this.option.yAxis.axisLabel.fontSize = value
           myChart.setOption(this.option)

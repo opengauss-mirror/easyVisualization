@@ -13,5 +13,5 @@ public interface OpenGaussDataBaseService
      * @return
      * @throws JsonProcessingException
      */
-    String getSourceData(String pollName, String sql) throws JsonProcessingException;
+    String getSourceData(String pollName, String sql) throws Exception;
 }

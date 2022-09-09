@@ -4,7 +4,7 @@
       <el-scrollbar>
         <el-alert id="alert-data-source-size" :title="'Total: ' + dataSourceSizeMax" type="success" :closable="false" ></el-alert>       
         <el-alert :title="$t('Radar.el-form-item.data_range')" type="info" :closable="false"></el-alert>       
-        <el-form label-width="auto"> 
+        <el-form label-position="left" label-width="40%"> 
           <el-form-item :label="$t('Pie.el-form-item.data_start_index')">
             <el-input-number v-model="startIndex" @change="updateDataSet" :min="0" :max="this.dataSourceSizeMax" size="mini"></el-input-number>
           </el-form-item>    
@@ -14,7 +14,7 @@
         </el-form>     
 
         <el-alert :title="$t('Pie.el-alert.title_set')" type="info" :closable="false"></el-alert>
-        <el-form label-width="auto">
+        <el-form label-position="left" label-width="40%">
           <el-form-item
             :label="$t('Pie.el-form-item.whether_show_title')"
             >
@@ -102,7 +102,7 @@
         </el-form> 
 
         <el-alert :title="$t('Pie.el-alert.legend_setting')" type="info" :closable="false"></el-alert>       
-        <el-form label-width="auto">     
+        <el-form label-position="left" label-width="40%">     
 
           <el-form-item
             :label="$t('Pie.el-form-item.legend_display_position')"
@@ -152,7 +152,7 @@
         </el-form>
           
         <el-alert :title="$t('Pie.el-alert.Pie_chart_settings')" type="info" :closable="false"></el-alert>   
-        <el-form label-width="auto"> 
+        <el-form label-position="left" label-width="40%"> 
 
           <el-form-item :label="$t('Pie.el-form-item.Pie_chart_inner_diameter')" >
             <el-input-number v-model="echarts_serie_radius_interior" @change="handle_echarts_serie_radius_interior" :min="0" :max="250" size="mini"></el-input-number>

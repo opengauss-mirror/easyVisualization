@@ -1,3 +1,7 @@
 .el-select {
     width: 100%;
 }
+
+.el-checkbox {
+    margin-left: 20px;
+}

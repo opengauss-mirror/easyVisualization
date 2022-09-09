@@ -2,9 +2,9 @@
   <el-container id="echarts_container">
     <el-aside width="18%">
       <el-scrollbar>
-        <el-alert id="alert-data-source-size":title="'Total: ' + dataSourceSizeMax"  type="success" :closable="false"></el-alert>       
+        <el-alert id="alert-data-source-size" :title="'Total: ' + dataSourceSizeMax"  type="success" :closable="false"></el-alert>       
         <el-alert title="选择数据范围" type="info" :closable="false"       ></el-alert>       
-        <el-form label-width="auto"> 
+        <el-form label-position="left" label-width="40%"> 
           <el-form-item :label="$t('YBar.el-form-item.data_start_index')"  >
             <el-input-number v-model="startIndex" @change="updateDataSet" :min="0" :max="this.dataSourceSizeMax" size="mini"></el-input-number>
           </el-form-item>    
@@ -14,15 +14,11 @@
         </el-form> 
 
         <el-alert :title="$t('YBar.el-alert.title_set')" type="info" :closable="false"       ></el-alert>
-        <el-form label-width="auto">
-          <el-form-item
-            :label="$t('YBar.el-form-item.whether_show_title')"
-             
-            >
+        <el-form label-position="left" label-width="40%">
+          <el-form-item :label="$t('YBar.el-form-item.whether_show_title')">
             <el-select 
               v-model="echarts_title_show" 
-              size="mini"
-                
+              size="mini"     
               @change="handle_echarts_title_show"
               >
                 <el-option
@@ -40,14 +36,10 @@
               </el-select>
           </el-form-item>  
     
-          <el-form-item
-            :label="$t('YBar.el-form-item.title_position')"
-             
-            >
+          <el-form-item :label="$t('YBar.el-form-item.title_position')">
             <el-select 
               v-model="echarts_title_position" 
               size="mini"
-                
               @change="handle_echarts_title_position"
               :disabled="this.echarts_title_show==false"
               >
@@ -108,8 +100,8 @@
         </el-form> 
 
         <el-alert :title="$t('YBar.el-alert.legend_setting')" type="info" :closable="false"       ></el-alert>       
-        <el-form label-width="auto"> 
-          <!-- 必须加这个v-if，否则这个部分先于mounted加载，会出错！-->
+        <el-form label-position="left" label-width="40%"> 
+          <!-- must add this v-if-->
           <el-form-item
             :label="$t('YBar.el-form-item.change_legend_name')"
              
@@ -125,7 +117,7 @@
             </el-input>
           </el-form-item>    
 
-          <!-- 必须加这个v-if，否则这个部分先于mounted加载，会出错！-->
+          <!-- must add this v-if-->
           <el-form-item
             :label="$t('YBar.el-form-item.change_legend_color')"
              
@@ -155,35 +147,24 @@
             </el-select>
           </el-form-item> 
 
-          <el-form-item
-            :label="$t('YBar.el-form-item.legend_layout')"
-             
-            >
+          <el-form-item :label="$t('YBar.el-form-item.legend_layout')">
             <el-select 
               v-model="echarts_legend_orient" 
               size="mini"
-                
-              @change="handle_echarts_legend_orient"
-              >
+              @change="handle_echarts_legend_orient">
               <el-option key="0" :label="$t('YBar.el-option.horizontal_arrangement')" value="0"></el-option>
               <el-option key="1" :label="$t('YBar.el-option.vertical_arrangement')" value="1"></el-option>
               </el-select>
           </el-form-item>     
 
 
-          <el-form-item
-            :label="$t('YBar.el-form-item.legend_size')"
-             
-            >
+          <el-form-item :label="$t('YBar.el-form-item.legend_size')">
             <el-input-number v-model="echarts_legend_textStyle_fontSize" @change="handle_echarts_legend_textStyle_fontSize" :min="7" :max="33" size="mini"></el-input-number>
           </el-form-item>       
-
-
-            
         </el-form>
         
         <el-alert :title="$t('YBar.el-alert.Drawing_grid_settings')" type="info" :closable="false"       ></el-alert>       
-        <el-form label-width="auto"> 
+        <el-form label-position="left" label-width="40%"> 
           <el-form-item :label="$t('YBar.el-form-item.grid_left_distance')"  >
             <el-input-number v-model="echarts_grid_left" @change="handle_echarts_grid_left" :min="0" :max="40" size="mini"></el-input-number>
           </el-form-item>     
@@ -203,13 +184,33 @@
         </el-form>      
 
         <el-alert :title="$t('YBar.el-alert.Horizontal_axis_settings')" type="info" :closable="false"       ></el-alert>  
-        <el-form label-width="auto">
+        <el-form label-position="left" label-width="40%">
+          <el-form-item :label="$t('YBar.el-form-item.xAxis_max')">
+            <el-input v-model="echarts_xAxis_max" @change="handle_echarts_xAxis_max" size="mini"></el-input>
+          </el-form-item> 
+
+          <el-form-item :label="$t('YBar.el-form-item.xAxis_min')">
+            <el-input v-model="echarts_xAxis_min" @change="handle_echarts_xAxis_min" size="mini"></el-input>
+          </el-form-item>    
+
+          <el-form-item :label="$t('normal.item.xAxis_name')">
+            <el-input v-model="echarts_xAxis_name" @change="handle_echarts_xAxis_name" size="mini"></el-input>
+          </el-form-item> 
+
+          <el-form-item :label="$t('normal.item.xAxis_name_color')">
+            <el-color-picker v-model="echarts_xAxis_nameTextStyle_color" size="small" @change="handle_echarts_xAxis_nameTextStyle_color"></el-color-picker>
+          </el-form-item>                         
+
+          <el-form-item :label="$t('normal.item.xAxis_name_size')">
+            <el-input-number v-model="echarts_xAxis_nameTextStyle_fontSize" @change="handle_echarts_xAxis_nameTextStyle_fontSize" :min="7" :max="33" size="mini"></el-input-number>
+          </el-form-item>    
+
           <el-form-item :label="$t('YBar.el-form-item.Horizontal_font_size')"  >
             <el-input-number v-model="echarts_xAxis_axisLabel_fontSize" @change="handle_echarts_xAxis_axisLabel_fontSize" :min="7" :max="33" size="mini"></el-input-number>
           </el-form-item>   
 
           <el-form-item :label="$t('YBar.el-form-item.Tab_spacing')"  >
-            <el-input-number v-model="echarts_xAxis_axisLabel_interval" @change="handle_echarts_xAxis_axisLabel_interval" :min="0" :max="3" size="mini"></el-input-number>
+            <el-input-number v-model="echarts_xAxis_axisLabel_interval" @change="handle_echarts_xAxis_axisLabel_interval" :min="0" :max="1000" size="mini"></el-input-number>
           </el-form-item>     
 
           <el-form-item :label="$t('YBar.el-form-item.Label_rotation_angle')"  >
@@ -218,14 +219,26 @@
         </el-form>
 
         <el-alert :title="$t('YBar.el-alert.Vertical_axis_settings')" type="info" :closable="false"       ></el-alert> 
-        <el-form label-width="auto">
+        <el-form label-position="left" label-width="40%">
+          <el-form-item :label="$t('normal.item.yAxis_name')">
+            <el-input v-model="echarts_yAxis_name" @change="handle_echarts_yAxis_name" size="mini"></el-input>
+          </el-form-item> 
+
+          <el-form-item :label="$t('normal.item.yAxis_name_color')">
+            <el-color-picker v-model="echarts_yAxis_nameTextStyle_color" size="small" @change="handle_echarts_yAxis_nameTextStyle_color"></el-color-picker>
+          </el-form-item>                         
+
+          <el-form-item :label="$t('normal.item.yAxis_name_size')">
+            <el-input-number v-model="echarts_yAxis_nameTextStyle_fontSize" @change="handle_echarts_yAxis_nameTextStyle_fontSize" :min="7" :max="33" size="mini"></el-input-number>
+          </el-form-item>    
+                 
           <el-form-item :label="$t('YBar.el-form-item.Vertical_font_size')"  >
             <el-input-number v-model="echarts_yAxis_axisLabel_fontSize" @change="handle_echarts_yAxis_axisLabel_fontSize" :min="7" :max="33" size="mini"></el-input-number>
           </el-form-item>                
         </el-form>
 
         <el-alert :title="$t('YBar.el-alert.other_settings')" type="info" :closable="false"       ></el-alert>   
-        <el-form label-width="auto"> 
+        <el-form label-position="left" label-width="40%"> 
           <el-form-item :label="$t('YBar.el-form-item.Bottom_zoom_controls')"  >
             <el-select v-model="echarts_data_zoom_is_active" size="mini"    @change="handle_echarts_data_zoom_is_active">
               <el-option key="1" :label="$t('YBar.el-option.display')" :value="true"></el-option>

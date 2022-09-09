@@ -12,11 +12,15 @@ const mutations = {
     updateEchartsFormList(state,value){
         state.echartsFormList = value
     },
+    updateDataSourceList(state,value){
+        state.dataSourceList = value
+    }
 }
 
 const state = {    
     whichModuleAmI:'',
     echartsFormList:[],
+    dataSourceList:[]
 }
 
 

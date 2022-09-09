@@ -14,7 +14,7 @@ export const radar = {
       
       option: {
         title: {
-          text: 'echarts',
+          text: this.$t('title'),
           show: true,
           textStyle:{
             color: '#000000',

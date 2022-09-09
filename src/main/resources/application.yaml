@@ -14,6 +14,9 @@ spring:
       strict: false
   resources:
     static-locations: classpath:/static
+  servlet:
+    multipart:
+      max-file-size: 5MB
 
 
 

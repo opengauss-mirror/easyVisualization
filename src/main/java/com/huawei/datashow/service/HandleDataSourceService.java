@@ -15,7 +15,7 @@ public interface HandleDataSourceService {
      * @param dataSourceName
      * @return
      */
-    public void saveDataSource(String pollName, String sql, String dataSourceName) throws IOException;
+    public void saveDataSource(String pollName, String sql, String dataSourceName) throws Exception;
 
     /**
      * Read source data from local file
@@ -52,6 +52,8 @@ public interface HandleDataSourceService {
      * @param dataSourceEditBean
      */
     public void editDataSource(String dataSourceName, DataSourceEditBean dataSourceEditBean) throws IOException;
+
+    public void reloadDataSource(String dataSourceName) throws IOException;
 
     public void saveEditDataSource(String dataSourceName) throws IOException;
 }

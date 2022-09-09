@@ -121,6 +121,7 @@ public class CSVUtil {
             linkedHashMap.remove(columnName);
         }
         result.put("columnNames", linkedHashMap.keySet());
+        in.close();
         return JSON.toJSONString(result);
     }
 
@@ -136,6 +137,7 @@ public class CSVUtil {
         while(br.readLine()!=null){
             rowCount++;
         }
+        br.close();
         return rowCount;
     }
 

@@ -67,7 +67,8 @@ methods: {
       error => {    
       }
     )
-    this.el_aside_loading = false        
+    this.el_aside_loading = false    
+    this.$store.commit('updateDataSourceList', this.dataSourceList)    
   },  
   handleAddSourceData(){
     this.selectDataIsActive = false
