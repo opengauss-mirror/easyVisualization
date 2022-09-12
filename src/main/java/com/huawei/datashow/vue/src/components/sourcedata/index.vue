@@ -9,10 +9,8 @@
       @selection-change="handleSelectionChange"
       :border="true"
       height="90%"
-      v-loading="loading"
-      :element-loading-text="$t('loading.text')"
-      element-loading-spinner="el-icon-loading"
-      element-loading-background="rgba(0, 0, 0, 0.8)">
+      v-loading.fullscreen.lock="loading"
+      :element-loading-text="$t('loading.text')">
           <el-table-column v-for="(value,key,index) in this.sourcedata[0]" :label="key" :property="key" :column-key="key"></el-table-column>
       </el-table>
 
@@ -42,7 +40,7 @@
 
 <script>
 import axios from 'axios'
-
+var flag = new RegExp("[`~!@#$^&*()=|{}':;',\\[\\].<>《》/?~！@#￥……&*（）——|{}【】‘；：”“'。，、？ ]");
 export default {
   props:[ 'count' ],
   data() {
@@ -70,7 +68,6 @@ export default {
   methods: {
     handleSelectionChange(val) {
       this.multipleSelection = val;
-      console.log('@',val)
     },
 
     handleSizeChange(val){
@@ -114,17 +111,29 @@ export default {
         }) 
     },
     async submit() {
+      if (this.count == 0) {
+        this.$notify({
+          title: this.$t('tips'),
+          message: this.$t('sourcedata.message.empty'),
+          type: 'error',
+          duration: 2000
+        })     
+        return 
+      }
       var statuss = false
       var dataSourceName = ''
       await this.$prompt(this.$t('sourcedata.message.data_source_name'), this.$t('submit'), {
         confirmButtonText: this.$t('confirm'),
         cancelButtonText: this.$t('cancel'),
       }).then(({ value }) => {
-        if (value == null || value.includes('.') || this.$store.state.dataSourceList.indexOf(value) !== -1) {    
-          this.$message({
+        var invalidInput = flag.test(value)
+        if (value == null || invalidInput || this.$store.state.dataSourceList.indexOf(value) !== -1 || value.indexOf('\\') !== -1) {    
+          this.$notify({
+            title: this.$t('tips'),
+            message: this.$t('sourcedata.message.wrong_data_source_name'),
             type: 'error',
-            message: this.$t('sourcedata.message.wrong_data_source_name')
-          })              
+            duration: 3000
+          });                 
           statuss = false
         } else {
           dataSourceName = value
@@ -132,9 +141,9 @@ export default {
           statuss = true
         } 
       }).catch(() => {
-        this.$message({
+        this.$notify({
           type: 'info',
-          message: this.$t('cancel')
+          title: this.$t('cancel')
         })
         statuss = false      
       })
@@ -153,16 +162,18 @@ export default {
         }
       }).then(
         response => {             
-          this.$message({
+          this.$notify({
+            title: this.$t('success'),
+            message: "",
             type: 'success',
-            message: response.data.message
-          })                       
+            duration: 2000
+          });                       
         },
         error => {}
         )  
 
       this.loading = false        
-    
+      this.$parent.$parent.$parent.$parent.$parent.fetchDataSourceList() 
     },
   },
   components:{},

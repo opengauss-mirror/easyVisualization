@@ -1,5 +1,4 @@
 import * as echarts from 'echarts'
-import 'echarts-gl' 
 import axios from 'axios'
 var myChart
 export const radar = {
@@ -44,11 +43,7 @@ export const radar = {
         toolbox:{
           show:true,
           right:60,
-          feature:{                            
-            dataView:{
-              title:'datas',
-              readOnly:false
-            },
+          feature:{
             saveAsImage:{
               type: 'jpg',
               show: true,

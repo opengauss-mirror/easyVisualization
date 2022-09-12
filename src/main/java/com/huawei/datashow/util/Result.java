@@ -20,7 +20,7 @@ public class Result<T> implements Serializable {
     /**
      * message
      */
-    private String message = "操作成功！";
+    private String message = "success";
 
     /**
      * result code
@@ -50,7 +50,7 @@ public class Result<T> implements Serializable {
         Result<T> r = new Result<T>();
         r.setSuccess(true);
         r.setCode(200);
-        r.setMessage("成功");
+        r.setMessage("success");
         return r;
     }
 

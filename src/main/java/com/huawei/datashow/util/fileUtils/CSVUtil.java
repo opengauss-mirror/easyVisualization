@@ -116,11 +116,13 @@ public class CSVUtil {
         }
         Map<String, Object> result = new LinkedHashMap<>();
         result.put("sourceData", list);
-        LinkedHashMap linkedHashMap = JSON.parseObject(csvRecords.get(0).get(0), LinkedHashMap.class);
-        for (String columnName : deleteColumnName) {
-            linkedHashMap.remove(columnName);
+        if (csvRecords.size() > 0) {
+            LinkedHashMap linkedHashMap = JSON.parseObject(csvRecords.get(0).get(0), LinkedHashMap.class);
+            for (String columnName : deleteColumnName) {
+                linkedHashMap.remove(columnName);
+            }
+            result.put("columnNames", linkedHashMap.keySet());
         }
-        result.put("columnNames", linkedHashMap.keySet());
         in.close();
         return JSON.toJSONString(result);
     }

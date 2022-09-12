@@ -150,9 +150,9 @@
       </el-form-item>  
     </el-form>    
   
-    <el-form :model="surfaceForm" label-width="auto" v-if="this.formType == 'surface'">
+    <el-form :model="scatter3DForm" label-width="auto" v-if="this.formType == 'scatter3D'">
       <el-form-item :label="$t('dialog-form.el-form-item.choose_data_source')">
-        <el-select v-model="surfaceForm.dataSourceName"   @change="fetchColumnNames">
+        <el-select v-model="scatter3DForm.dataSourceName"   @change="fetchColumnNames">
           <el-option
             v-for="dataSourceName in dataSourceList"
             :label="dataSourceName"
@@ -163,7 +163,7 @@
       </el-form-item>
   
       <el-form-item :label="$t('dialog-form.el-form-item.choose_x-axis_data')">
-        <el-select v-model="surfaceForm.xOption">
+        <el-select v-model="scatter3DForm.xOption">
           <el-option
             v-for="columnName in columnNames"
             :label="columnName"
@@ -173,7 +173,7 @@
       </el-form-item>
   
       <el-form-item :label="$t('dialog-form.el-form-item.choose_y-axis_data')">
-        <el-select v-model="surfaceForm.yOption">
+        <el-select v-model="scatter3DForm.yOption">
           <el-option
             v-for="columnName in columnNames"
             :label="columnName"
@@ -183,7 +183,7 @@
       </el-form-item>
   
       <el-form-item :label="$t('dialog-form.el-form-item.choose_z-axis_data')">
-        <el-select v-model="surfaceForm.zOption">
+        <el-select v-model="scatter3DForm.zOption">
           <el-option
             v-for="columnName in columnNames"
             :label="columnName"
@@ -224,7 +224,7 @@
               line_yOptions:[]
             }
           },
-          surfaceForm: {
+          scatter3DForm: {
             dataSourceName: '',
             xOption:'',
             yOption:'',
@@ -255,9 +255,9 @@
                 }          
               }
             }
-            else if (this.formType == 'surface') {
-              this.$parent.$parent.$parent.addEchartsForm(this.surfaceForm);
-              this.surfaceForm = {
+            else if (this.formType == 'scatter3D') {
+              this.$parent.$parent.$parent.addEchartsForm(this.scatter3DForm);
+              this.scatter3DForm = {
                 dataSourceName: '',
                 xOption:'',
                 yOption:'',

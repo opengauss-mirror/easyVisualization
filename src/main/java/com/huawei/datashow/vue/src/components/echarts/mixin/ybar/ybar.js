@@ -53,11 +53,7 @@ export const ybar = {
             toolbox:{
               show:true,
               right:60,
-              feature:{                            
-                dataView:{
-                  title:'datas',
-                  readOnly:false
-                },
+              feature:{
                 saveAsImage:{
                   type: 'jpg',
                   show: true,
@@ -100,7 +96,7 @@ export const ybar = {
           dataSourceSizeList:[],
           
           startIndex: 0,
-          endIndex:10,
+          endIndex:9,
           
     
           
@@ -493,7 +489,7 @@ export const ybar = {
               };
               serie.datasetIndex = i;
               serie.encode.y = echartsForm.xOption
-              serie.name = "数据源:" + echartsForm.dataSourceName + "数据项:" + yOption
+              serie.name = echartsForm.dataSourceName + " " + yOption
               serie.encode.x = yOption
               this.series.push(serie)
             }

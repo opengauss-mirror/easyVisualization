@@ -1,8 +1,6 @@
 package com.huawei.datashow.controller;
 
-import com.baomidou.dynamic.datasource.toolkit.DynamicDataSourceContextHolder;
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.huawei.datashow.bean.smbms_3DdataBean;
 import com.huawei.datashow.mapper.OpenGaussDataBaseMapper;
 import com.huawei.datashow.service.OpenGaussDataBaseService;
 import com.huawei.datashow.util.SQLUtil;

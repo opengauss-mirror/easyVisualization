@@ -4,6 +4,7 @@
     action="/uploadCSVOrTxtFile"
     ref="upload"
     :on-remove="handleRemove"
+    :before-upload="beforeUpload"
     :before-remove="beforeRemove"
     :auto-upload="false"
     :limit="1"
@@ -33,6 +34,12 @@ export default {
     handleExceed(files, fileList) {
       this.$message.warning(this.$t('uploadcsvfile.message.file_num'));
     },
+    beforeUpload(file) {
+      let dataSourceName = file.name.substring(0, file.name.indexOf("."))
+      if (this.$store.state.dataSourceList.indexOf(dataSourceName) != -1) {
+        return this.$confirm(this.$t('uploadcsvfile.message.data_source_name'));
+      }
+    },
     submitUpload() {
       this.$refs.upload.submit();
     },
@@ -42,16 +49,18 @@ export default {
     handleSuccess(response) {
       if (response.code == 200) {
         this.$notify({
-          title: this.$t('tips'),
-          message: response.message,
-          type: 'success'
+          title: this.$t('success'),
+          message: "",
+          type: 'success',
+          duration: 2000
         });  
         this.$parent.$parent.$parent.fetchDataSourceList()
       } else {
         this.$notify({
           title: this.$t('tips'),
-          message: response.message,
-          type: 'error'
+          message: this.$t('uploadcsvfile.message.wrong_file'),
+          type: 'error',
+          duration: 2000
         });         
       }
     },
@@ -59,7 +68,8 @@ export default {
       this.$notify({
           title: this.$t('tips'),
           message: this.$t('uploadcsvfile.message.upload_error'),
-          type: 'error'
+          type: 'error',
+          duration: 2000
         }); 
     },
     back() {

@@ -9,9 +9,7 @@
         id = "login_container"
         size="mini"
         v-loading.fullscreen.lock="loading"
-        :element-loading-text="$t('loading.text')"
-        element-loading-spinner="el-icon-loading"
-        element-loading-background="rgba(0, 0, 0, 0.8)">
+        :element-loading-text="$t('loading.text')">
 
         <h3 class="login_title">{{$t('login.form.formName')}} 
             <el-tooltip class="item" placement="top-start" effect="light">
@@ -182,7 +180,8 @@ export default {
                         this.$notify({
                             title: this.$t('success'),
                             type: "success",
-                            message: response.data.message,
+                            message: "",
+                            duration: 2000
                         });                                            
                     }else {
                         this.$alert(response.data.message, this.$t('tips'), {

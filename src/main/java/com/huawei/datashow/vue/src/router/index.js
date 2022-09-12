@@ -10,7 +10,7 @@ import Line from '../components/echarts/Line.vue'
 import Pie from '../components/echarts/Pie.vue'
 import Radar from '../components/echarts/Radar.vue'
 import Scatter from '../components/echarts/Scatter.vue'
-import Surface from '../components/echarts/Surface.vue'
+import Scatter3D from '../components/echarts/Scatter3D.vue'
 import UploadXlsOrXlsxFile from '../components/uploadxlsorxlsxfile/index.vue'
 import UploadCSVOrTxtFile from '../components/uploadcsvortxtfile/index.vue'
 import AddSourceData from '../components/addsourcedata/index.vue'
@@ -95,8 +95,8 @@ export default new VueRouter({
 							component:Radar
 						},
 						{
-							path:'surface',
-							component:Surface
+							path:'scatter3D',
+							component:Scatter3D
 						}			
 					]
 				},

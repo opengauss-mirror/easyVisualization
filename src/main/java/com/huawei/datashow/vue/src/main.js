@@ -33,7 +33,7 @@ const i18n = new VueI18n({
     locale: sessionStorage.getItem("lang") || 'zh',
     messages:{
       zh:{
-        goodday:'祝你开心每一天',
+        goodday:'have a nice day',
         ...local_zh,
         ...elementZH
     },

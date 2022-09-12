@@ -8,9 +8,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
-import javax.servlet.ServletException;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 @RestController
@@ -27,7 +24,7 @@ public class UploadFileController
             return Result.OK();
         } catch (IOException ioException) {
             ioException.printStackTrace();
-            return Result.error("已上传，但文件为空或格式不匹配，请删除并重新上传！");
+            return Result.error("Uploaded! But File Is Empty Or Not XLS/XLSX File!");
         }
     }
 
@@ -39,7 +36,7 @@ public class UploadFileController
             return Result.OK();
         } catch (IOException ioException) {
             ioException.printStackTrace();
-            return Result.error("已上传，但上传文件为空或格式不匹配，请删除并重新上传！");
+            return Result.error("Uploaded! But File Is Empty Or Not CSV/TXT File!");
         }
     }
 }

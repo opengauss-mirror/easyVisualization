@@ -19,7 +19,7 @@
 
 #select-poll-name{
     margin-left:20px;
-    width:150px;
+    width:160px;
 }
 
 
@@ -29,7 +29,7 @@
 }
 
 #select-schema{
-    width:150px;
+    width:160px;
 }
 
 #item-table-headers{
@@ -38,7 +38,7 @@
 }
 
 #select-table-headers{
-    width:150px;
+    width:160px;
 }
 
 #item-where-table-header{
@@ -47,7 +47,7 @@
 }
 
 #select-where-table-header{
-    width:150px;
+    width:160px;
 }
 
 #item-where-operate{
@@ -56,12 +56,16 @@
 }
 
 #select-where-operate{
-    width:150px;
+    width:160px;
 }
 
 #item-where-bigger-smaller-equals{
     margin-top:20px;
     margin-left:20px
+}
+
+#input-where-bigger-smaller-equals{
+    width:160px;
 }
 
 #item-where-scope-0{
@@ -84,7 +88,7 @@
 }
 
 #select-sort-headers{
-    width:150px;
+    width:160px;
 }
 
 #item-sort-desc-or-asc{
@@ -93,7 +97,7 @@
 }
 
 #select-sort-desc-or-asc{
-    width:150px;
+    width:160px;
 }
 
 #alert-group{
@@ -106,7 +110,7 @@
 }
 
 #select-group-header{
-    width:150px;
+    width:160px;
 }
 
 #item-aggregate-header{
@@ -115,7 +119,7 @@
 }
 
 #select-aggregate-header{
-    width:150px
+    width:160px
 }
 
 #item-aggregate-function{
@@ -124,7 +128,7 @@
 }
 
 #select-aggregate-function{
-    width:150px
+    width:160px
 }
 
 #item-aggregate-name{
@@ -133,7 +137,7 @@
 }
 
 #input-aggregate-name{
-    width:150px
+    width:160px
 }
 
 

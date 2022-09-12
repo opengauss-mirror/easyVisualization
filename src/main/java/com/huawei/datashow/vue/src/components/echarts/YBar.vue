@@ -3,7 +3,7 @@
     <el-aside width="18%">
       <el-scrollbar>
         <el-alert id="alert-data-source-size" :title="'Total: ' + dataSourceSizeMax"  type="success" :closable="false"></el-alert>       
-        <el-alert title="选择数据范围" type="info" :closable="false"       ></el-alert>       
+        <el-alert :title="$t('Radar.el-form-item.data_range')" type="info" :closable="false"       ></el-alert>       
         <el-form label-position="left" label-width="40%"> 
           <el-form-item :label="$t('YBar.el-form-item.data_start_index')"  >
             <el-input-number v-model="startIndex" @change="updateDataSet" :min="0" :max="this.dataSourceSizeMax" size="mini"></el-input-number>

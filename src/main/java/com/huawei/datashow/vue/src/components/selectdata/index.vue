@@ -1,7 +1,7 @@
 <template>
   <el-form id="form" label-position="left" label-width="20%">
     <el-form-item id="echarts-type" :label="$t('selectdata.el-form-item.echarts-type')">
-      <el-select id="select-echarts-type" v-model="echartsType" placeholder="请选择" size="small" @change="echartsFormList = []">
+      <el-select id="select-echarts-type" v-model="echartsType" size="small" @change="echartsFormList = []">
         <el-option
           v-for="item in echartsTypes"
           :label="item.label"
@@ -12,7 +12,7 @@
     <Discription v-for="item,index in echartsFormList" :form="item" :form-index="index" :discription-type="echartsType"></Discription>
     <el-button id="button-add-echarts-form" type="info" :disabled="addEchartsFormDisabled" @click="dialogFormVisible = true" size="small" icon="el-icon-circle-plus-outline" v-if="echartsType!=''">
       {{$t('selectdata.button.button-add-echarts-form')}}</el-button>
-    <el-dialog :title="'添加' + this.echartsType + '图数据项'" :visible.sync="dialogFormVisible">
+    <el-dialog :title="$t('dialog-form.title1') + this.echartsType + $t('dialog-form.title2')" :visible.sync="dialogFormVisible">
       <DialogForm :form-type="echartsType" :data-source-list="dataSourceList" :unavailable-data-source-list="unavailableDataSourceList"></DialogForm>
     </el-dialog>
     <el-button id="button-to-echarts" type="primary" :disabled="toEchartsDiabled" @click="toEcharts" size="small" icon="el-icon-s-open" v-if="echartsType!=''">
@@ -64,8 +64,8 @@ import router from '@/router';
             value:'radar'
           },
           {
-            label:this.$t('echartsType.surface'),
-            value:'surface'
+            label:this.$t('echartsType.scatter3D'),
+            value:'scatter3D'
           }
 
         ],
@@ -84,7 +84,7 @@ import router from '@/router';
         return unavailableDataSourceList;
       },
       addEchartsFormDisabled() {
-        if ((this.echartsType == 'pie' || this.echartsType == 'radar' || this.echartsType == 'surface') && this.echartsFormList.length == 1) {
+        if ((this.echartsType == 'pie' || this.echartsType == 'radar' || this.echartsType == 'scatter3D') && this.echartsFormList.length == 1) {
           return true
         }         
       },
