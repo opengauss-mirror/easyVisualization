@@ -8,6 +8,7 @@ import com.huawei.datashow.util.fileUtils.CommonUtil;
 import com.huawei.datashow.util.fileUtils.YAMLUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
 import java.io.File;
 import java.io.IOException;
 import java.util.Map;
@@ -18,7 +19,7 @@ import java.util.UUID;
 
 
 @Service
-public class HandleDataSourceServiceImpl implements HandleDataSourceService{
+public class HandleDataSourceServiceImpl implements HandleDataSourceService {
     @Autowired
     OpenGaussDataBaseService openGaussDataBaseServiceImpl;
 
@@ -32,12 +33,12 @@ public class HandleDataSourceServiceImpl implements HandleDataSourceService{
         sql = sql + " limit %d, %d";
 
         if (batch > 0) {
-            for (int i = 0; i < batch; i++){
+            for (int i = 0; i < batch; i++) {
                 String jsonListMap = openGaussDataBaseServiceImpl.getSourceData(pollName, String.format(sql, i * 1000, 1000));
                 List<Map> listMap = JSON.parseObject(jsonListMap, ArrayList.class);
                 CSVUtil.writeCSVFile(dataSourceName, listMap, i != 0);
             }
-            String jsonListMap = openGaussDataBaseServiceImpl.getSourceData(pollName, String.format(sql, batch * 1000, count - batch*1000 + 1));
+            String jsonListMap = openGaussDataBaseServiceImpl.getSourceData(pollName, String.format(sql, batch * 1000, count - batch * 1000 + 1));
             List<Map> listMap = JSON.parseObject(jsonListMap, ArrayList.class);
             CSVUtil.writeCSVFile(dataSourceName, listMap, true);
         } else {
@@ -68,13 +69,13 @@ public class HandleDataSourceServiceImpl implements HandleDataSourceService{
     public String getDataSourceList() {
         File dir = new File(CommonUtil.DATA_SOURCE_DIR);
 
-        if(!dir.exists()){
+        if (!dir.exists()) {
             dir.mkdir();
         }
         File[] files = dir.listFiles();
         List<String> dataSourceList = new ArrayList<>();
         for (File file : files) {
-            if (file.isFile()){
+            if (file.isFile()) {
                 dataSourceList.add(file.getName());
             }
         }
@@ -101,13 +102,13 @@ public class HandleDataSourceServiceImpl implements HandleDataSourceService{
         if (batch > 0) {
             for (int i = 0; i < batch; i++) {
                 String s = CSVUtil.readCSVFile(dataSourceName, 1000, i * 1000, CSVUtil.SAVE_DATA_SOURCE_EDIT_MODE);
-                CSVUtil.writeCSVFile(tmpFileName, (List<Map>) JSON.parseObject(s, LinkedHashMap.class).get("sourceData"),i != 0);
+                CSVUtil.writeCSVFile(tmpFileName, (List<Map>) JSON.parseObject(s, LinkedHashMap.class).get("sourceData"), i != 0);
             }
             String s = CSVUtil.readCSVFile(dataSourceName, rowCount - batch * 1000, batch * 1000, CSVUtil.SAVE_DATA_SOURCE_EDIT_MODE);
-            CSVUtil.writeCSVFile(tmpFileName, (List<Map>) JSON.parseObject(s, LinkedHashMap.class).get("sourceData"),true);
+            CSVUtil.writeCSVFile(tmpFileName, (List<Map>) JSON.parseObject(s, LinkedHashMap.class).get("sourceData"), true);
         } else {
             String s = CSVUtil.readCSVFile(dataSourceName, rowCount, 0, CSVUtil.SAVE_DATA_SOURCE_EDIT_MODE);
-            CSVUtil.writeCSVFile(tmpFileName, (List<Map>) JSON.parseObject(s, LinkedHashMap.class).get("sourceData"),false);
+            CSVUtil.writeCSVFile(tmpFileName, (List<Map>) JSON.parseObject(s, LinkedHashMap.class).get("sourceData"), false);
         }
 
 
@@ -119,5 +120,13 @@ public class HandleDataSourceServiceImpl implements HandleDataSourceService{
         YAMLUtil.createYAMLFile(dataSourceName);
     }
 
-
+    @Override
+    public boolean getEditStatus(String dataSourceName) throws IOException {
+        boolean flag = false;
+        DataSourceEditBean dataSourceEditBean = YAMLUtil.readYAMLFile(dataSourceName);
+        if (dataSourceEditBean.getDeleteColumnName().size() > 0 || dataSourceEditBean.getDeleteRowIndex().size() > 0) {
+            flag = true;
+        }
+        return flag;
+    }
 }

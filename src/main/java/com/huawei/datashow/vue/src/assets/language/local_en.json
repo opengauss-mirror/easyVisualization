@@ -28,10 +28,15 @@
         },
         "message": {
           "deleteMessage":"Deleted data is selected, please do not delete it repeatedly",
-          "bigSizeMessage":"The amount of data is large and it takes a long time to save and modify!"
+          "reloadMessage":"Confirm reload?",
+          "preserveMessage":"Confirm preserve edit?",
+          "bigSizeMessage":"The amount of data is large and it takes a long time to save and modify!",
+          "deleteSourceData":"Confirm delete source data?"
         }
     },
     "dialog-form": {
+        "title1":"Add",
+        "title2":"chart config",
         "el-form-item": {
             "choose_data_source": "Select data source",
             "choose_legend": "Select legend",
@@ -138,9 +143,9 @@
             "Radar_chart_settings": "Radar chart setting"
         }
     },
-    "Surface": {
+    "Scatter3D": {
         "button": {
-            "button_refreshEcharts": "刷新"
+            "button_refreshEcharts": "refresh"
         }
     },
     "YBar": {
@@ -253,7 +258,7 @@
             "password": "password"
         },
         "message": {
-          "notNull":"不能为空"
+          "notNull":"notNull"
         },
         "tips": {
             "pg_hba_conf1":"Confirm you have readed",
@@ -286,7 +291,8 @@
             "button_submit": "Submit"
         },
         "message": {
-          "data_source_name": "Please enter a data source name (please avoid duplication with existing data source names and exclude'.')",
+          "empty":"data source is empty!",
+          "data_source_name": "Please enter a data source name (please avoid duplication with existing data source names and exclude'.' '/' '\\' etc)",
           "wrong_data_source_name": "Data source name is empty or illegal!"
         }
     },
@@ -353,7 +359,9 @@
         },
         "message": {
           "file_num":"The current limit is 1 file!",
-          "upload_error":"Oversize!"
+          "wrong_file":"Uploaded! But File Is Empty Or Not CSV/TXT File!",
+          "upload_error":"Oversize!",
+          "data_source_name":"Data source name existed! Override?"
         }
     },
     "uploadtxtfile": {
@@ -365,6 +373,9 @@
             "make_sure": "Please make sure that the first line in the uploaded TXT file is the header!",
             "make_sure_separator": "Please make sure the delimiter of the uploaded TXT file is', '",
             "size": "Size of file must smaller than 5MB"
+        },
+        "message": {
+            "data_source_name":"Data source name existed! Override?"
         }
     },
     "uploadxlsorxlsxfile": {
@@ -375,6 +386,10 @@
         "div": {
             "make_sure": "Please make sure that the first line in the uploaded xls and xlsx files is the header!",
             "size": "Size of file must smaller than 5MB"
+        },
+        "message": {
+          "data_source_name":"Data source name existed! Override?",
+          "wrong_file":"Uploaded! But File Is Empty Or Not XLS/XLSX File!"
         }
     },
     "echartsType":{
@@ -386,10 +401,10 @@
       "combination":"Combination diagram",
       "pie":"Pie chart",
       "radar":"Radar chart",
-      "surface":"3D surface diagram"
+      "scatter3D":"3D scatter diagram"
     },
     "loading": {
-      "text": "Loading"
+      "text": "Loading..."
     },
     "selectAll":"All",
     "show":"display",

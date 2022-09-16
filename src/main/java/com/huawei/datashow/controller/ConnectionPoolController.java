@@ -34,7 +34,7 @@ public class ConnectionPoolController
     {
         try {
             connectionPoolService.addHikariCP(dto);
-            return Result.OK("建立数据源连接成功！");
+            return Result.OK();
         } catch (MyException e) {
             return Result.error(e.getMessage());
         }

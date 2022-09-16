@@ -1,6 +1,8 @@
 package com.huawei.datashow.service;
 
 import com.huawei.datashow.bean.DataSourceEditBean;
+import com.huawei.datashow.util.MyException;
+
 import java.io.IOException;
 
 
@@ -15,7 +17,7 @@ public interface HandleDataSourceService {
      * @param dataSourceName
      * @return
      */
-    public void saveDataSource(String pollName, String sql, String dataSourceName) throws Exception;
+    void saveDataSource(String pollName, String sql, String dataSourceName) throws Exception;
 
     /**
      * Read source data from local file
@@ -24,7 +26,7 @@ public interface HandleDataSourceService {
      * @param limit
      * @return
      */
-    public String readDataSource(String dataSourceName, int startIndex, int limit) throws IOException;
+    String readDataSource(String dataSourceName, int startIndex, int limit) throws IOException;
 
     /**
      * Get data source size
@@ -32,28 +34,30 @@ public interface HandleDataSourceService {
      * @return
      * @throws IOException
      */
-    public int getDataSourceSize(String dataSourceName) throws IOException;
+    int getDataSourceSize(String dataSourceName) throws IOException;
 
     /**
      * Remove data source
      * @param dataSourceName
      * @return
      */
-    public void removeDataSource(String dataSourceName) throws IOException;
+    void removeDataSource(String dataSourceName) throws IOException;
 
     /**
      * Get data source list
      * @return
      */
-    public String getDataSourceList();
+    String getDataSourceList();
 
     /**
      * Remove columns or rows
      * @param dataSourceEditBean
      */
-    public void editDataSource(String dataSourceName, DataSourceEditBean dataSourceEditBean) throws IOException;
+    void editDataSource(String dataSourceName, DataSourceEditBean dataSourceEditBean) throws IOException;
 
-    public void reloadDataSource(String dataSourceName) throws IOException;
+    void reloadDataSource(String dataSourceName) throws IOException;
 
-    public void saveEditDataSource(String dataSourceName) throws IOException;
+    void saveEditDataSource(String dataSourceName) throws IOException, MyException;
+
+    boolean getEditStatus(String dataSourceName) throws IOException;
 }

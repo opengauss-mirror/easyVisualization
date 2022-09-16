@@ -47,11 +47,7 @@ export const normal = {
             toolbox:{
               show:true,
               right:60,
-              feature:{                            
-                dataView:{
-                  title:'datas',
-                  readOnly:false
-                },
+              feature:{
                 saveAsImage:{
                   type: 'jpg',
                   show: true,
@@ -91,7 +87,7 @@ export const normal = {
           },
           dataSourceSizeList:[],
           startIndex: 0,
-          endIndex:10,
+          endIndex:9,
           
           origin_option:{},
           

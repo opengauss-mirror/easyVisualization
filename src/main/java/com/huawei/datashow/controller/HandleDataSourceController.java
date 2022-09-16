@@ -2,6 +2,7 @@ package com.huawei.datashow.controller;
 
 import com.huawei.datashow.bean.ParamDataSourceEditBean;
 import com.huawei.datashow.service.HandleDataSourceService;
+import com.huawei.datashow.util.MyException;
 import com.huawei.datashow.util.Result;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -26,10 +27,10 @@ public class HandleDataSourceController {
     {
         try {
             handleDataSourceServiceImpl.saveDataSource(pollName, sql, dataSourceName);
-            return Result.OK("数据源保存成功");
+            return Result.OK();
         } catch (Exception e) {
             e.printStackTrace();
-            return Result.error("数据源保存失败");
+            return Result.error("error");
         }
     }
 
@@ -43,7 +44,7 @@ public class HandleDataSourceController {
             return Result.OK(data);
         } catch (IOException ioException) {
             ioException.printStackTrace();
-            return Result.error("读取失败");
+            return Result.error("error");
         }
     }
 
@@ -54,7 +55,7 @@ public class HandleDataSourceController {
             return Result.OK(dataSourceSize);
         } catch (IOException ioException) {
             ioException.printStackTrace();
-            return Result.error("接口调用失败！");
+            return Result.error("error");
         }
     }
 
@@ -62,10 +63,10 @@ public class HandleDataSourceController {
     public Result<Object> removeDataSource(@RequestParam("dataSourceName") String dataSourceName){
         try {
             handleDataSourceServiceImpl.removeDataSource(dataSourceName);
-            return Result.OK("删除成功");
+            return Result.OK();
         } catch (IOException ioException) {
             ioException.printStackTrace();
-            return Result.error("删除失败");
+            return Result.error("error");
         }
     }
 
@@ -78,10 +79,10 @@ public class HandleDataSourceController {
     public Result<Object> editDataSource(@RequestBody ParamDataSourceEditBean paramDataSourceEditBean) {
         try {
             handleDataSourceServiceImpl.editDataSource(paramDataSourceEditBean.getDataSourceName(), paramDataSourceEditBean.getDataSourceEditBean());
-            return Result.OK("删除成功");
+            return Result.OK();
         } catch (IOException ioException) {
             ioException.printStackTrace();
-            return Result.error("接口调用失败");
+            return Result.error("error");
         }
     }
 
@@ -92,7 +93,7 @@ public class HandleDataSourceController {
             return Result.OK();
         } catch (IOException ioException) {
             ioException.printStackTrace();
-            return Result.error("接口调用失败");
+            return Result.error("error");
         }
     }
 
@@ -103,7 +104,20 @@ public class HandleDataSourceController {
             return Result.OK();
         } catch (IOException ioException) {
             ioException.printStackTrace();
-            return Result.error("接口调用失败");
+            return Result.error("error");
+        } catch (MyException myException) {
+            return Result.error("Data source is empty! Please Delete Instead.");
+        }
+    }
+
+    @GetMapping("/get-edit-status")
+    public Result<Object> getEditStatus(@RequestParam("dataSourceName") String dataSourceName) {
+        try {
+            boolean editStatus = handleDataSourceServiceImpl.getEditStatus(dataSourceName);
+            return Result.OK(editStatus);
+        } catch (IOException ioException) {
+            ioException.printStackTrace();
+            return Result.error("error");
         }
     }
 

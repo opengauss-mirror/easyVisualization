@@ -39,14 +39,14 @@
     <el-descriptions-item :label="$t('discription.discriptions.order')">{{formIndex}}</el-descriptions-item>
     <el-descriptions-item :label="$t('discription.discriptions.name')">{{form.dataSourceName}}</el-descriptions-item>
     <el-descriptions-item :label="$t('discription.discriptions.dim')">{{form.yOptions}}</el-descriptions-item>
-    <el-descriptions-item :label="$t('discription.discriptions.laebl_classify')">{{form.xOption}}</el-descriptions-item>
+    <el-descriptions-item :label="$t('discription.discriptions.label_classify')">{{form.xOption}}</el-descriptions-item>
     <el-descriptions-item :label="$t('discription.discriptions.option')">
         <el-button type="text" size="mini" @click="handleDelete">{{$t('discription.button.delete')}}</el-button>
     </el-descriptions-item>
   </el-descriptions>  
 
   <el-descriptions 
-  v-else-if="this.discriptionType == 'surface'" 
+  v-else-if="this.discriptionType == 'scatter3D'" 
   title="" 
   :column="3" 
   size="small" 

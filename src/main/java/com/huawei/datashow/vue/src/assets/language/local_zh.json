@@ -28,10 +28,15 @@
       },
       "message": {
         "deleteMessage":"选择了已删除的数据,请勿重复删除",
-        "bigSizeMessage":"数据量较大，保存修改耗时较长!"
+        "reloadMessage":"此操作将撤销所有已经做出的修改，是否继续?",
+        "preserveMessage":"确认保存修改?",
+        "bigSizeMessage":"数据量较大，保存修改耗时较长!",
+        "deleteSourceData":"此操作将永久删除数据源，是否继续?"
       }
   },
   "dialog-form": {
+      "title1":"添加",
+      "title2":"图数据项",
       "el-form-item": {
           "choose_data_source": "选择数据源",
           "choose_legend": "选择图例",
@@ -138,7 +143,7 @@
           "Radar_chart_settings": "雷达图设置"
       }
   },
-  "Surface": {
+  "Scatter3D": {
       "button": {
           "button_refreshEcharts": "刷新"
       }
@@ -286,7 +291,8 @@
           "button_submit": "提交"
       },
       "message": {
-        "data_source_name": "请输入数据源名称(请避免与已有数据源名称重复且不包含'.')",
+        "empty":"数据源为空!",
+        "data_source_name": "请输入数据源名称(请避免与已有数据源名称重复且不包含'.' '/' '\\'等特殊符号)",
         "wrong_data_source_name": "请检查数据源名称是否已存在或为空或不合法！"
       }
   },
@@ -353,7 +359,9 @@
       },
       "message": {
         "file_num":"当前限制选择1个文件!",
-        "upload_error":"超出文件大小限制"
+        "wrong_file":"已上传，但是文件为空或非CSV/TXT文件，请删除并重新上传!",
+        "upload_error":"超出文件大小限制",
+        "data_source_name":"数据源名已存在,是否上传并覆盖之前的数据源文件?"
       }
   },
   "uploadtxtfile": {
@@ -365,6 +373,9 @@
           "make_sure": "请务必确认上传的TXT文件中的第一行是表头!",
           "make_sure_separator": "请务必确认上传的TXT文件的分隔符为','",
           "size": "文件大小上限为5MB"
+      },
+      "message": {
+        "data_source_name":"数据源名已存在,是否上传并覆盖之前的数据源文件?"
       }
   },
   "uploadxlsorxlsxfile": {
@@ -375,6 +386,10 @@
       "div": {
           "make_sure": "请务必确认上传的xls、xlsx文件中的第一行是表头!",
           "size": "文件大小上限为5MB"
+      },
+      "message": {
+        "data_source_name":"数据源名已存在,是否上传并覆盖之前的数据源文件?",
+        "wrong_file":"已上传，但是文件为空或非XLS/XLSX文件，请删除并重新上传!"
       }
   },
   "echartsType":{
@@ -386,10 +401,10 @@
     "combination":"组合图",
     "pie":"饼状图",
     "radar":"雷达图",
-    "surface":"3D曲面图"
+    "scatter3D":"3D散点图"
   },
   "loading": {
-    "text": "正在加载"
+    "text": "正在处理..."
   },
   "selectAll":"全选",
   "show":"显示",

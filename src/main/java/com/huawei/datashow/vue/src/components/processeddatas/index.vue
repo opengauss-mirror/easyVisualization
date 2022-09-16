@@ -3,10 +3,8 @@
       <el-aside 
           id="aside_datasources" 
           width="10%"
-          v-loading="el_aside_loading"
-          :element-loading-text="$t('loading.text')"
-          element-loading-spinner="el-icon-loading"
-          element-loading-background="rgba(0, 0, 0, 0.8)">   
+          v-loading.fullscreen.lock="el_aside_loading"
+          :element-loading-text="$t('loading.text')">   
         <el-button id="refreshDataSourceListButton" size="mini" type="success" icon="el-icon-refresh" @click='fetchDataSourceList'>
           {{$t('processeddatas.button.refreshDataSourceListButton')}}</el-button>      
         <el-alert id="alert_datasource" :title="$t('processeddatas.el-alert.alert_datasource')" type="info" center :closable="false"></el-alert>
@@ -21,7 +19,8 @@
         <router-view></router-view>
         <DataSource 
           v-if="sourceDataIsActive" 
-          v-loading="!sourceDataIsActive"
+          v-loading.fullscreen.lock="!sourceDataIsActive"
+          :element-loading-text="$t('loading.text')"
           :data-source-name="this.dataSourceName">
         </DataSource>
         <el-aside id="selectdata" width="40%" v-if="selectDataIsActive">  
@@ -86,7 +85,9 @@ methods: {
       this.sourceDataIsActive = true       
     })              
   },
-
+  closeSourceData() {
+    this.sourceDataIsActive = false
+  },
   handelSelectDataIsActive(){
     this.selectDataIsActive = !this.selectDataIsActive
   }

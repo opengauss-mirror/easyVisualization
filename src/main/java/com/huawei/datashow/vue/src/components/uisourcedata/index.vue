@@ -114,7 +114,7 @@
             </el-form-item>
 
             <el-form-item id="item-where-table-header" :label="$t('uisourcedata.el-form-item.item-where-table-header')">
-              <el-select id="select-where-table-header" v-model="where_table_header"   size="mini" clearable>
+              <el-select id="select-where-table-header" v-model="where_table_header"  size="mini" clearable>
                 <el-option v-for="header in tableHeader" :key="header" :label="header" :value="header"></el-option>
               </el-select>
             </el-form-item> 
@@ -129,7 +129,7 @@
             </el-form-item> 
 
             <el-form-item id="item-where-bigger-smaller-equals" :label="$t('uisourcedata.el-form-item.item-where-bigger-smaller-equals')" v-if="this.where_table_header_operate != 'BETWEEN' && this.where_table_header_operate != ''" >
-              <el-input v-model="where_table_header_bigger_smaller_equals" size="mini" :placeholder="this.where_table_header" :disabled="this.where_table_header==''"></el-input>
+              <el-input id="input-where-bigger-smaller-equals" v-model="where_table_header_bigger_smaller_equals" size="mini" :placeholder="this.where_table_header" :disabled="this.where_table_header==''"></el-input>
             </el-form-item> 
 
             <el-form-item id="item-where-scope-0" :label="$t('uisourcedata.el-form-item.item-where-scope-0')" v-if="this.where_table_header_operate == 'BETWEEN'" :disabled="this.where_table_header==''">
@@ -293,7 +293,11 @@
           </el-form>        
       </el-scrollbar>         
     </el-aside>
-    <SourceData v-if="sourceDataIsActive" v-loading="loading" :count="count"></SourceData>
+    <SourceData 
+    v-if="sourceDataIsActive" 
+    v-loading.fullscreen.lock="loading" 
+    :element-loading-text="$t('loading.text')"
+    :count="count"></SourceData>
 </el-container>
 </template>
 

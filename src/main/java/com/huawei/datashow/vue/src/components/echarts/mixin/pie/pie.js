@@ -15,7 +15,7 @@ export const pie = {
       
       option: {
         title: {
-          text: 'echarts',
+          text: this.$t('title'),
           show: true,
           textStyle:{
             color: '#000000',
@@ -39,11 +39,7 @@ export const pie = {
         toolbox:{
           show:true,
           right:60,
-          feature:{                            
-            dataView:{
-              title:'datas',
-              readOnly:false
-            },
+          feature:{
             saveAsImage:{
               type: 'jpg',
               show: true,
@@ -55,14 +51,13 @@ export const pie = {
         series:[],
         tooltip:{
           trigger:'item',
-          
         }        
       },
       
       dataSourceSizeList:[],
       
       startIndex: 0,
-      endIndex:10,
+      endIndex:9,
     
       
       echarts_title_show:true,
@@ -355,7 +350,7 @@ export const pie = {
         let echartsForm = echartsFormList[i];
         let yOption = echartsForm.yOptions
         var serie = {
-          name: echartsForm.dataSourceName + '-' + yOption,
+          name: String(echartsForm.dataSourceName),
           datasetIndex: 0,
           type: 'pie',
           radius: [0,250],
@@ -365,11 +360,12 @@ export const pie = {
             borderRadius:0
           },                         
           label:{
-            fontSize:12
+            fontSize:12,
+            formatter: '{b} \n {d}%'
           },    
           encode: {
             itemName: echartsForm.xOption,
-            value: echartsForm.yOption
+            value: yOption
           },            
         };
         this.series.push(serie)

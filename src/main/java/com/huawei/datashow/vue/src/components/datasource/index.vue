@@ -5,14 +5,12 @@
             <el-table 
             id="table"
             stripe
-            :data="sourcedata"
+            :data="sourcedata_filted"
             @selection-change="handleSelectionChange"
             :border="true"
             @row-contextmenu="rowContextmenu"
-            v-loading="el_table_loading"
-            :element-loading-text="$t('loading.text')"
-            element-loading-spinner="el-icon-loading"
-            element-loading-background="rgba(0, 0, 0, 0.8)">
+            v-loading.fullscreen.lock="el_table_loading"
+            :element-loading-text="$t('loading.text')">
                 <el-table-column fixed="left" type="selection" width="80"></el-table-column>
                 <el-table-column v-for="header in this.headers" :label="header" :property="header" :column-key="header"></el-table-column>
                 <el-table-column fixed="right" :label="$t('operation')" width="120">
@@ -41,17 +39,20 @@
         >
           <el-button 
             type="warning" 
+            :disabled="multipleRowSelection.length == 0"
             @click="deleteSelection()" 
             icon="el-icon-scissors">
             {{$t('datasource.button.button_deleteSelection')}}
           </el-button>
           <el-button 
+            :disabled="!editStatus"
             type="info" 
-            @click="reload()" 
+            @click="confirmReload()" 
             icon="el-icon-refresh-right">
             {{$t('datasource.button.button_reload')}}
           </el-button>          
           <el-button 
+          :disabled="!editStatus"
             type="success" 
             @click="preserve()" 
             icon="el-icon-folder-checked">
@@ -73,14 +74,9 @@
     </el-container>
 </template>
 
-<style scoped>
-  @import '@/assets/css/datasource/datasource.css';
-</style>
-
 <script>
 import ContextButton from '@/components/contextbutton'
 import axios from 'axios'
-import router from '@/router'
 
   export default {
     props:[ 'dataSourceName' ],
@@ -99,6 +95,8 @@ import router from '@/router'
         startIndex:0,
         limit:10,
         count:0,
+
+        editStatus:false,
 
         multipleRowSelection: [],
         currentRow:'',
@@ -124,12 +122,20 @@ import router from '@/router'
             dataSourceEditBean: this.dataSourceEdit
         }
       },
+      sourcedata_filted() {
+        var sourcedata_filted = []
+        for (let i = 0; i < this.sourcedata.length; i++) {
+            if (JSON.stringify(this.sourcedata[i]) != '{}') {
+                sourcedata_filted.push(this.sourcedata[i])
+            }
+        }
+        return sourcedata_filted
+      }
     },
 
     methods: { 
         handleSelectionChange(val) {
             this.multipleRowSelection = val;
-            console.log('@',val)
         },
 
         deleteSelection() {
@@ -158,6 +164,18 @@ import router from '@/router'
             this.fetchDataSource()  
         },
 
+        confirmReload() {
+            this.$confirm(this.$t('datasource.message.reloadMessage'), this.$t('tips'), {
+                confirmButtonText: this.$t('confirm'),
+                cancelButtonText: this.$t('cancel'),
+                type: 'warning'
+            }).then(() => {  
+                this.reload()             
+            }).catch(() => {
+                this.showMessage(this.$t('cancel'), this.$t('cancel'), "info")  
+            });  
+        },
+
         async reload() {
             this.dataSourceEdit.deleteColumnName = []
             this.dataSourceEdit.deleteRowIndex = []
@@ -169,7 +187,7 @@ import router from '@/router'
             }
             }).then(
             response => {
-                this.showMessage(this.$t('success'), response.data.message, "success")
+                this.showMessage(this.$t('success'), "", "success")
             },
             error => {
                 this.showMessage(this.$t('fail'), response.data.message, "error")
@@ -179,9 +197,19 @@ import router from '@/router'
 
         async preserve(){
             if (this.count < 10000) {
-                this.saveEdit();
-                return;
+                this.$confirm(this.$t('datasource.message.preserveMessage'), this.$t('tips'), {
+                    confirmButtonText: this.$t('confirm'),
+                    cancelButtonText: this.$t('cancel'),
+                    type: 'warning'
+                }).then(() => {
+                    this.$parent.$parent.$parent.el_aside_loading = true
+                    this.saveEdit()                  
+                }).catch(() => {
+                    this.showMessage(this.$t('cancel'), this.$t('cancel'), "info")      
+                });  
+                return ;
             }
+
             this.$confirm(this.$t('datasource.message.bigSizeMessage'), this.$t('tips'), {
                 confirmButtonText: this.$t('confirm'),
                 cancelButtonText: this.$t('cancel'),
@@ -195,28 +223,40 @@ import router from '@/router'
         },
 
         deleteSourceData(){
-            axios({
-            url:'/handle-data-source/remove-data-source',
-            method:"get",
-            params:{
-                'dataSourceName':this.dataSourceName
-            }
-            }).then(
-            response => {
-                this.$message({
-                    message: response.data.message,
-                    type: 'success'
-                })    
-                this.sourcedata = [] 
-                this.headers = []
-                this.$parent.$parent.$parent.fetchDataSourceList()       
-            },
-            error => {
-                this.$message({
-                    message: response.data.message,
-                    type: 'error'
-                })                
-            })  
+            this.$confirm(this.$t('datasource.message.deleteSourceData'), this.$t('tips'), {
+                confirmButtonText: this.$t('confirm'),
+                cancelButtonText: this.$t('cancel'),
+                type: 'warning'
+            }).then(() => {
+                axios({
+                url:'/handle-data-source/remove-data-source',
+                method:"get",
+                params:{
+                    'dataSourceName':this.dataSourceName
+                }
+                }).then(
+                response => {
+                    this.showMessage(this.$t('success'), "", "success")  
+                    this.sourcedata = [] 
+                    this.headers = []
+                    this.$parent.$parent.$parent.fetchDataSourceList()       
+                },
+                error => {
+                    this.$notify({
+                        title: this.$t('tips'),
+                        message: response.data.message,
+                        type: 'error',
+                        duration: 3000
+                    });              
+                })  
+                this.$parent.$parent.$parent.closeSourceData()
+            }).catch(() => {
+                this.$notify({
+                    type: 'info',
+                    title: this.$t('cancel')
+                });          
+            });            
+
         },
 
         fatherMethodHandelSelectDataIsActive(){
@@ -250,6 +290,7 @@ import router from '@/router'
                 return
             }
             let rowIndexInDataSource = this.getRowIndexInDataSource(this.currentRow)
+            console.log(rowIndexInDataSource)
             this.dataSourceEdit.deleteRowIndex.push(rowIndexInDataSource)
             this.removeRowAndColumn()
         },
@@ -288,6 +329,7 @@ import router from '@/router'
                 error => {
             })   
             this.el_table_loading = false
+            this.fetchEditStatus()
         },
         
         fetchDataSourceSize() {
@@ -305,6 +347,21 @@ import router from '@/router'
             })                
         },
 
+        fetchEditStatus() {
+            axios({
+            url:'/handle-data-source/get-edit-status',
+            method:"get",
+            params:{
+                'dataSourceName':this.dataSourceName
+            }
+            }).then(
+            response => {
+                this.editStatus = JSON.parse(response.data.result)
+            },
+            error => {
+            })             
+        },
+
         async removeRowAndColumn(){
             await axios({
             url:'/handle-data-source/edit-data-source',
@@ -312,7 +369,7 @@ import router from '@/router'
             data:this.ParamDataSourceEditBean
             }).then(
             response => {
-                this.showMessage(this.$t('success'), response.data.message, "success")
+                this.showMessage(this.$t('success'), "", "success")
             },
             error => {
                 this.showMessage(this.$t('fail'), response.data.message, "error")
@@ -331,7 +388,11 @@ import router from '@/router'
             }            
             }).then(
             response => {
-                this.showMessage(this.$t('success'), response.data.message, "success")
+                if (response.data.code == 500) {
+                    this.showMessage(this.$t('fail'), response.data.message, "error")
+                } else {
+                    this.showMessage(this.$t('success'), "", "success")
+                }
             },
             error => {
                 this.showMessage(this.$t('fail'), response.data.message, "error")
@@ -347,15 +408,14 @@ import router from '@/router'
         getRowIndexInDataSource(row) {
             let rowIndexInCurrentPage
             for (let i = 0; i < this.sourcedata.length; i++) {
-                if (this.sourcedata[i] == row) {
+                if (JSON.stringify(this.sourcedata[i]) == JSON.stringify(row)) {
                     rowIndexInCurrentPage = i
                     break
                 } 
             } 
-            let rowIndexInDataSource = rowIndexInCurrentPage + (this.currentPage - 1) * this.pagesize          
+            let rowIndexInDataSource = rowIndexInCurrentPage + (this.currentPage - 1) * this.pagesize         
             return rowIndexInDataSource
         },
-
 
         /**
          * show message
@@ -367,7 +427,8 @@ import router from '@/router'
             this.$notify({
                 title: title,
                 message: message,
-                type: type
+                type: type,
+                duration: 1000
             });                 
         },
    
@@ -383,3 +444,9 @@ import router from '@/router'
   }
 </script>
 
+<style scoped>
+@import '@/assets/css/datasource/datasource.css';
+.el-table .hidden-row {
+    display: none;
+  }
+</style>

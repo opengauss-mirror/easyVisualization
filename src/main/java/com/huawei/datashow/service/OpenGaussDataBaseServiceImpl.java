@@ -19,7 +19,7 @@ public class OpenGaussDataBaseServiceImpl implements OpenGaussDataBaseService
 
     private ValueFilter filter = (obj, s, v) -> {
         if (v == null){
-            return "数据为空";
+            return "null";
         }
         return v;
     };
