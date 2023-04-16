@@ -90,30 +90,33 @@ public class CSVUtil {
         List<CSVRecord> csvRecords = parser.getRecords();
 
         List<Map> list = new ArrayList<>();
-        for (int i = startIndex; i < limit + startIndex; i++) {
-            if (i == rowCount) {
-                break;
-            }
-
-            Map map = JSON.parseObject(csvRecords.get(i).get(0), LinkedHashMap.class);
-
-            for (String columnName : deleteColumnName) {
-                map.remove(columnName);
-            }
-
-            if (mode == 0) {
-                if (deleteRowIndex.contains(i)) {
-                    map.clear();
+        if (limit > 0) {
+            for (int i = startIndex; i < limit + startIndex; i++) {
+                if (i == rowCount) {
+                    break;
                 }
-                list.add(map);
 
-            } else if (mode == 1) {
-                if (!deleteRowIndex.contains(i)) {
+                Map map = JSON.parseObject(csvRecords.get(i).get(0), LinkedHashMap.class);
+
+                for (String columnName : deleteColumnName) {
+                    map.remove(columnName);
+                }
+
+                if (mode == 0) {
+                    if (deleteRowIndex.contains(i)) {
+                        map.clear();
+                    }
                     list.add(map);
-                }
-            }
 
+                } else if (mode == 1) {
+                    if (!deleteRowIndex.contains(i)) {
+                        list.add(map);
+                    }
+                }
+
+            }
         }
+
         Map<String, Object> result = new LinkedHashMap<>();
         result.put("sourceData", list);
         if (csvRecords.size() > 0) {
