@@ -529,7 +529,9 @@ methods: {
     }).then(
       response => {
         this.sourcedata = response.data           
-        this.tableHeader = Object.keys(response.data[0])              
+        if(response.data[0]) {
+          this.tableHeader = Object.keys(response.data[0])
+        }            
       },
       error => {}
     )
