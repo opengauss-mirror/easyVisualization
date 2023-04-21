@@ -30,19 +30,17 @@ public class HandleDataSourceServiceImpl implements HandleDataSourceService {
         int count = (int) arrayList.get(0).get("count");
         int batch = count / 1000;
 
-        sql = sql + " limit %d, %d";
-
         if (batch > 0) {
             for (int i = 0; i < batch; i++) {
-                String jsonListMap = openGaussDataBaseServiceImpl.getSourceData(pollName, String.format(sql, i * 1000, 1000));
+                String jsonListMap = openGaussDataBaseServiceImpl.getSourceData(pollName, sql + String.format(" limit %d, %d", i * 1000, 1000));
                 List<Map> listMap = JSON.parseObject(jsonListMap, ArrayList.class);
                 CSVUtil.writeCSVFile(dataSourceName, listMap, i != 0);
             }
-            String jsonListMap = openGaussDataBaseServiceImpl.getSourceData(pollName, String.format(sql, batch * 1000, count - batch * 1000 + 1));
+            String jsonListMap = openGaussDataBaseServiceImpl.getSourceData(pollName, sql + String.format(" limit %d, %d", batch * 1000, count - batch * 1000 + 1));
             List<Map> listMap = JSON.parseObject(jsonListMap, ArrayList.class);
             CSVUtil.writeCSVFile(dataSourceName, listMap, true);
         } else {
-            String jsonListMap = openGaussDataBaseServiceImpl.getSourceData(pollName, String.format(sql, 0, count));
+            String jsonListMap = openGaussDataBaseServiceImpl.getSourceData(pollName, sql + String.format(" limit %d, %d", 0, count));
             List<Map> listMap = JSON.parseObject(jsonListMap, ArrayList.class);
             CSVUtil.writeCSVFile(dataSourceName, listMap, false);
         }
