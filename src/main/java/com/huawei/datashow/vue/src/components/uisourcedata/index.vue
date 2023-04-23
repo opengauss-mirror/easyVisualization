@@ -480,6 +480,7 @@ methods: {
   },
   handelPollChange(pollName){
     this.schemaName = ''
+    this.resetSearch()
     axios({
       url:'/getSchema',
       method:"get",
@@ -497,6 +498,7 @@ methods: {
   },
   handelSchemaNameChange(){
     this.table = ''
+    this.resetSearch()
     axios({
       url:'/getTables',
       method:"get",
@@ -516,6 +518,7 @@ methods: {
   async handleTableSelect(index){
     this.table = index
     this.loading = true
+    this.resetSearch()
     this.sql = 'SELECT * FROM ' + this.table
     await axios({
       url:'/showSourceData',
@@ -569,18 +572,20 @@ methods: {
     this.getCount()
   },
 
+  resetSearch(){
+    this.choose_table_headers = [];
+    this.where_table_header = '';
+    this.where_table_header_equals = '';
+    this.order_by_headers = [];
+    this.order_by_header_desc_or_asc = '';
+    this.group_by_header = '';
+    this.aggregate_header = '';
+    this.aggregate_function = '';
+    this.aggregate_header_new_name = '';
+  },
   
   handle_reset_sift(){
-    
-    this.choose_table_headers = [],
-    this.where_table_header = '',
-    this.where_table_header_equals = '',
-    this.order_by_headers = [],
-    this.order_by_header_desc_or_asc = '',
-    this.group_by_header = '',
-    this.aggregate_header = '',
-    this.aggregate_function = '',
-    this.aggregate_header_new_name = ''
+    this.resetSearch();
     axios({
       url:'/showSourceData',
       method:"get",
